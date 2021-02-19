@@ -3,7 +3,7 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.climbup</groupId>
+    <groupId>com.applets</groupId>
     <artifactId>applets</artifactId>
     <version>4.6.0</version>
 
@@ -11,7 +11,7 @@
     <description>我的小程序</description>
     
     <properties>
-        <climbup.version>4.6.0</climbup.version>
+        <applets.version>4.6.0</applets.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -35,7 +35,7 @@
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
-        
+
             <!-- SpringBoot的依赖配置-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -181,49 +181,49 @@
             
             <!-- 定时任务-->
             <dependency>
-                <groupId>com.climbup</groupId>
-                <artifactId>ruoyi-quartz</artifactId>
-                <version>${climbup.version}</version>
+                <groupId>com.applets</groupId>
+                <artifactId>applets-quartz</artifactId>
+                <version>${applets.version}</version>
             </dependency>
 
             <!-- 代码生成-->
             <dependency>
-                <groupId>com.climbup</groupId>
-                <artifactId>ruoyi-generator</artifactId>
-                <version>${climbup.version}</version>
+                <groupId>com.applets</groupId>
+                <artifactId>applets-generator</artifactId>
+                <version>${applets.version}</version>
             </dependency>
 
             <!-- 核心模块-->
             <dependency>
-                <groupId>com.climbup</groupId>
-                <artifactId>ruoyi-framework</artifactId>
-                <version>${climbup.version}</version>
+                <groupId>com.applets</groupId>
+                <artifactId>applets-framework</artifactId>
+                <version>${applets.version}</version>
             </dependency>
 
             <!-- 系统模块-->
             <dependency>
-                <groupId>com.climbup</groupId>
-                <artifactId>ruoyi-system</artifactId>
-                <version>${climbup.version}</version>
+                <groupId>com.applets</groupId>
+                <artifactId>applets-system</artifactId>
+                <version>${applets.version}</version>
             </dependency>
 
             <!-- 通用工具-->
             <dependency>
-                <groupId>com.climbup</groupId>
-                <artifactId>ruoyi-common</artifactId>
-                <version>${climbup.version}</version>
+                <groupId>com.applets</groupId>
+                <artifactId>applets-common</artifactId>
+                <version>${applets.version}</version>
             </dependency>
 
         </dependencies>
     </dependencyManagement>
 
     <modules>
-        <module>ruoyi-admin</module>
-        <module>ruoyi-framework</module>
-        <module>ruoyi-system</module>
-        <module>ruoyi-quartz</module>
-        <module>ruoyi-generator</module>
-        <module>ruoyi-common</module>
+        <module>applets-admin</module>
+        <module>applets-framework</module>
+        <module>applets-system</module>
+        <module>applets-quartz</module>
+        <module>applets-generator</module>
+        <module>applets-common</module>
     </modules>
     <packaging>pom</packaging>
 
