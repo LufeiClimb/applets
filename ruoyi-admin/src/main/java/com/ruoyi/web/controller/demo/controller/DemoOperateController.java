@@ -27,7 +27,7 @@ import com.ruoyi.web.controller.demo.domain.UserOperateModel;
 /**
  * 操作控制
  * 
- * @author ruoyi
+ * @author climbup
  */
 @Controller
 @RequestMapping("/demo/operate")

@@ -8,7 +8,7 @@ import com.ruoyi.common.enums.OnlineStatus;
 /**
  * 在线用户会话属性
  * 
- * @author ruoyi
+ * @author climbup
  */
 public class OnlineSession extends SimpleSession
 {
