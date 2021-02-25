@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增买入基金')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-mairu-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">基金代码：</label>
+                <div class="col-sm-8">
+                    <input name="code" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">基金名称：</label>
+                <div class="col-sm-8">
+                    <input name="name" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">买入时净值：</label>
+                <div class="col-sm-8">
+                    <input name="jingzhi" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">买入份额：</label>
+                <div class="col-sm-8">
+                    <input name="number" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">买入金额：</label>
+                <div class="col-sm-8">
+                    <input name="amount" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">手续费：</label>
+                <div class="col-sm-8">
+                    <input name="charge" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">创建时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="credateTime" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-js" />
+    <script th:inline="javascript">
+        var prefix = ctx + "jijin/mairu"
+        $("#form-mairu-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-mairu-add').serialize());
+            }
+        }
+
+        $("input[name='credateTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+    </script>
+</body>
+</html>

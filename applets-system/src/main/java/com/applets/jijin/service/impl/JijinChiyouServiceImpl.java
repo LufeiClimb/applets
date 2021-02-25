@@ -1,18 +1,19 @@
-package com.applets.system.service.impl;
+package com.applets.jijin.service.impl;
 
 import java.util.List;
+import com.applets.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.applets.system.mapper.JijinChiyouMapper;
-import com.applets.system.domain.JijinChiyou;
-import com.applets.system.service.IJijinChiyouService;
+import com.applets.jijin.mapper.JijinChiyouMapper;
+import com.applets.jijin.domain.JijinChiyou;
+import com.applets.jijin.service.IJijinChiyouService;
 import com.applets.common.core.text.Convert;
 
 /**
  * 持有基金Service业务层处理
  * 
  * @author LufeiClimb
- * @date 2021-02-24
+ * @date 2021-02-25
  */
 @Service
 public class JijinChiyouServiceImpl implements IJijinChiyouService {
@@ -22,12 +23,12 @@ public class JijinChiyouServiceImpl implements IJijinChiyouService {
     /**
      * 查询持有基金
      * 
-     * @param daima 持有基金ID
+     * @param id 持有基金ID
      * @return 持有基金
      */
     @Override
-    public JijinChiyou selectJijinChiyouById(String daima) {
-        return jijinChiyouMapper.selectJijinChiyouById(daima);
+    public JijinChiyou selectJijinChiyouById(Long id) {
+        return jijinChiyouMapper.selectJijinChiyouById(id);
     }
 
     /**
@@ -60,6 +61,7 @@ public class JijinChiyouServiceImpl implements IJijinChiyouService {
      */
     @Override
     public int updateJijinChiyou(JijinChiyou jijinChiyou) {
+        jijinChiyou.setUpdateTime(DateUtils.getNowDate());
         return jijinChiyouMapper.updateJijinChiyou(jijinChiyou);
     }
 
@@ -77,11 +79,11 @@ public class JijinChiyouServiceImpl implements IJijinChiyouService {
     /**
      * 删除持有基金信息
      * 
-     * @param daima 持有基金ID
+     * @param id 持有基金ID
      * @return 结果
      */
     @Override
-    public int deleteJijinChiyouById(String daima) {
-        return jijinChiyouMapper.deleteJijinChiyouById(daima);
+    public int deleteJijinChiyouById(Long id) {
+        return jijinChiyouMapper.deleteJijinChiyouById(id);
     }
 }

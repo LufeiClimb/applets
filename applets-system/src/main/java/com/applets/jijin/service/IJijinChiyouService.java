@@ -1,22 +1,22 @@
-package com.applets.system.mapper;
+package com.applets.jijin.service;
 
 import java.util.List;
-import com.applets.system.domain.JijinChiyou;
+import com.applets.jijin.domain.JijinChiyou;
 
 /**
- * 持有基金Mapper接口
+ * 持有基金Service接口
  * 
  * @author LufeiClimb
- * @date 2021-02-24
+ * @date 2021-02-25
  */
-public interface JijinChiyouMapper {
+public interface IJijinChiyouService {
     /**
      * 查询持有基金
      * 
-     * @param daima 持有基金ID
+     * @param id 持有基金ID
      * @return 持有基金
      */
-    public JijinChiyou selectJijinChiyouById(String daima);
+    public JijinChiyou selectJijinChiyouById(Long id);
 
     /**
      * 查询持有基金列表
@@ -43,18 +43,18 @@ public interface JijinChiyouMapper {
     public int updateJijinChiyou(JijinChiyou jijinChiyou);
 
     /**
-     * 删除持有基金
-     * 
-     * @param daima 持有基金ID
-     * @return 结果
-     */
-    public int deleteJijinChiyouById(String daima);
-
-    /**
      * 批量删除持有基金
      * 
-     * @param daimas 需要删除的数据ID
+     * @param ids 需要删除的数据ID
      * @return 结果
      */
-    public int deleteJijinChiyouByIds(String[] daimas);
+    public int deleteJijinChiyouByIds(String ids);
+
+    /**
+     * 删除持有基金信息
+     * 
+     * @param id 持有基金ID
+     * @return 结果
+     */
+    public int deleteJijinChiyouById(Long id);
 }

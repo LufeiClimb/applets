@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.applets.jijin.mapper.JijinChiyouMapper">
+    
+    <resultMap type="JijinChiyou" id="JijinChiyouResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="name"    column="name"    />
+        <result property="guzhi"    column="guzhi"    />
+        <result property="jingzhi"    column="jingzhi"    />
+        <result property="cost"    column="cost"    />
+        <result property="number"    column="number"    />
+        <result property="amount"    column="amount"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="credateTime"    column="credate_time"    />
+    </resultMap>
+
+    <sql id="selectJijinChiyouVo">
+        select id, code, name, guzhi, jingzhi, cost, number, amount, update_time, credate_time from jijin_chiyou
+    </sql>
+
+    <select id="selectJijinChiyouList" parameterType="JijinChiyou" resultMap="JijinChiyouResult">
+        <include refid="selectJijinChiyouVo"/>
+        <where>  
+            <if test="code != null  and code != ''"> and code = #{code}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="guzhi != null  and guzhi != ''"> and guzhi = #{guzhi}</if>
+            <if test="jingzhi != null  and jingzhi != ''"> and jingzhi = #{jingzhi}</if>
+            <if test="cost != null  and cost != ''"> and cost = #{cost}</if>
+            <if test="number != null  and number != ''"> and number = #{number}</if>
+            <if test="amount != null  and amount != ''"> and amount = #{amount}</if>
+            <if test="credateTime != null "> and credate_time = #{credateTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectJijinChiyouById" parameterType="Long" resultMap="JijinChiyouResult">
+        <include refid="selectJijinChiyouVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertJijinChiyou" parameterType="JijinChiyou" useGeneratedKeys="true" keyProperty="id">
+        insert into jijin_chiyou
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">code,</if>
+            <if test="name != null">name,</if>
+            <if test="guzhi != null">guzhi,</if>
+            <if test="jingzhi != null">jingzhi,</if>
+            <if test="cost != null">cost,</if>
+            <if test="number != null">number,</if>
+            <if test="amount != null">amount,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="credateTime != null">credate_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">#{code},</if>
+            <if test="name != null">#{name},</if>
+            <if test="guzhi != null">#{guzhi},</if>
+            <if test="jingzhi != null">#{jingzhi},</if>
+            <if test="cost != null">#{cost},</if>
+            <if test="number != null">#{number},</if>
+            <if test="amount != null">#{amount},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="credateTime != null">#{credateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateJijinChiyou" parameterType="JijinChiyou">
+        update jijin_chiyou
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null">code = #{code},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="guzhi != null">guzhi = #{guzhi},</if>
+            <if test="jingzhi != null">jingzhi = #{jingzhi},</if>
+            <if test="cost != null">cost = #{cost},</if>
+            <if test="number != null">number = #{number},</if>
+            <if test="amount != null">amount = #{amount},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="credateTime != null">credate_time = #{credateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteJijinChiyouById" parameterType="Long">
+        delete from jijin_chiyou where id = #{id}
+    </delete>
+
+    <delete id="deleteJijinChiyouByIds" parameterType="String">
+        delete from jijin_chiyou where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

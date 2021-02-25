@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.applets.jijin.mapper.JijinMaichuMapper">
+    
+    <resultMap type="JijinMaichu" id="JijinMaichuResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="name"    column="name"    />
+        <result property="jingzhi"    column="jingzhi"    />
+        <result property="number"    column="number"    />
+        <result property="amount"    column="amount"    />
+        <result property="charge"    column="charge"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectJijinMaichuVo">
+        select id, code, name, jingzhi, number, amount, charge, update_time, create_time from jijin_maichu
+    </sql>
+
+    <select id="selectJijinMaichuList" parameterType="JijinMaichu" resultMap="JijinMaichuResult">
+        <include refid="selectJijinMaichuVo"/>
+        <where>  
+            <if test="code != null  and code != ''"> and code = #{code}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="jingzhi != null  and jingzhi != ''"> and jingzhi = #{jingzhi}</if>
+            <if test="number != null  and number != ''"> and number = #{number}</if>
+            <if test="amount != null  and amount != ''"> and amount = #{amount}</if>
+            <if test="charge != null  and charge != ''"> and charge = #{charge}</if>
+        </where>
+    </select>
+    
+    <select id="selectJijinMaichuById" parameterType="Long" resultMap="JijinMaichuResult">
+        <include refid="selectJijinMaichuVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertJijinMaichu" parameterType="JijinMaichu" useGeneratedKeys="true" keyProperty="id">
+        insert into jijin_maichu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">code,</if>
+            <if test="name != null">name,</if>
+            <if test="jingzhi != null">jingzhi,</if>
+            <if test="number != null">number,</if>
+            <if test="amount != null">amount,</if>
+            <if test="charge != null">charge,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">#{code},</if>
+            <if test="name != null">#{name},</if>
+            <if test="jingzhi != null">#{jingzhi},</if>
+            <if test="number != null">#{number},</if>
+            <if test="amount != null">#{amount},</if>
+            <if test="charge != null">#{charge},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateJijinMaichu" parameterType="JijinMaichu">
+        update jijin_maichu
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null">code = #{code},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="jingzhi != null">jingzhi = #{jingzhi},</if>
+            <if test="number != null">number = #{number},</if>
+            <if test="amount != null">amount = #{amount},</if>
+            <if test="charge != null">charge = #{charge},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteJijinMaichuById" parameterType="Long">
+        delete from jijin_maichu where id = #{id}
+    </delete>
+
+    <delete id="deleteJijinMaichuByIds" parameterType="String">
+        delete from jijin_maichu where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

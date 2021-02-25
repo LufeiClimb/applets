@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('持有基金列表')" />
+    <th:block th:include="include :: header('卖出基金列表')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -12,19 +12,27 @@
                         <ul>
                             <li>
                                 <label>基金代码：</label>
-                                <input type="text" name="daima"/>
+                                <input type="text" name="code"/>
                             </li>
                             <li>
                                 <label>基金名称：</label>
-                                <input type="text" name="mingcheng"/>
+                                <input type="text" name="name"/>
                             </li>
                             <li>
-                                <label>最新估值：</label>
-                                <input type="text" name="guzhi"/>
-                            </li>
-                            <li>
-                                <label>最新净值：</label>
+                                <label>卖出时净值：</label>
                                 <input type="text" name="jingzhi"/>
+                            </li>
+                            <li>
+                                <label>卖出份额：</label>
+                                <input type="text" name="number"/>
+                            </li>
+                            <li>
+                                <label>卖出金额：</label>
+                                <input type="text" name="amount"/>
+                            </li>
+                            <li>
+                                <label>手续费：</label>
+                                <input type="text" name="charge"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -36,16 +44,16 @@
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:chiyou:add">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="jijin:maichu:add">
                     <i class="fa fa-plus"></i> 添加
                 </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:chiyou:edit">
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="jijin:maichu:edit">
                     <i class="fa fa-edit"></i> 修改
                 </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:chiyou:remove">
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="jijin:maichu:remove">
                     <i class="fa fa-remove"></i> 删除
                 </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:chiyou:export">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="jijin:maichu:export">
                     <i class="fa fa-download"></i> 导出
                 </a>
             </div>
@@ -56,9 +64,9 @@
     </div>
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
-        var editFlag = [[${@permission.hasPermi('system:chiyou:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('system:chiyou:remove')}]];
-        var prefix = ctx + "system/chiyou";
+        var editFlag = [[${@permission.hasPermi('jijin:maichu:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('jijin:maichu:remove')}]];
+        var prefix = ctx + "jijin/maichu";
 
         $(function() {
             var options = {
@@ -67,33 +75,46 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "持有基金",
+                modalName: "卖出基金",
                 columns: [{
                     checkbox: true
                 },
                 {
-                    field: 'daima',
+                    field: 'id',
+                    title: 'id',
+                    visible: false
+                },
+                {
+                    field: 'code',
                     title: '基金代码'
                 },
                 {
-                    field: 'mingcheng',
+                    field: 'name',
                     title: '基金名称'
                 },
                 {
-                    field: 'guzhi',
-                    title: '最新估值'
+                    field: 'jingzhi',
+                    title: '卖出时净值'
                 },
                 {
-                    field: 'jingzhi',
-                    title: '最新净值'
+                    field: 'number',
+                    title: '卖出份额'
+                },
+                {
+                    field: 'amount',
+                    title: '卖出金额'
+                },
+                {
+                    field: 'charge',
+                    title: '手续费'
                 },
                 {
                     title: '操作',
                     align: 'center',
                     formatter: function(value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.daima + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.daima + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
                         return actions.join('');
                     }
                 }]

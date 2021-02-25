@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增卖出基金')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-maichu-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">基金代码：</label>
+                <div class="col-sm-8">
+                    <input name="code" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">基金名称：</label>
+                <div class="col-sm-8">
+                    <input name="name" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">卖出时净值：</label>
+                <div class="col-sm-8">
+                    <input name="jingzhi" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">卖出份额：</label>
+                <div class="col-sm-8">
+                    <input name="number" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">卖出金额：</label>
+                <div class="col-sm-8">
+                    <input name="amount" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">手续费：</label>
+                <div class="col-sm-8">
+                    <input name="charge" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "jijin/maichu"
+        $("#form-maichu-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-maichu-add').serialize());
+            }
+        }
+    </script>
+</body>
+</html>
