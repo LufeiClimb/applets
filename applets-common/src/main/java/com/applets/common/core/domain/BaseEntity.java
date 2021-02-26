@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * 
  * @author LufeiClimb
  */
-public class BaseEntity implements Serializable
-{
+public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 搜索值 */
@@ -78,8 +77,7 @@ public class BaseEntity implements Serializable
         this.updateBy = updateBy;
     }
 
-    public Date getUpdateTime()
-    {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
@@ -98,8 +96,7 @@ public class BaseEntity implements Serializable
         this.remark = remark;
     }
 
-    public Map<String, Object> getParams()
-    {
+    public Map<String, Object> getParams() {
         if (params == null)
         {
             params = new HashMap<>();

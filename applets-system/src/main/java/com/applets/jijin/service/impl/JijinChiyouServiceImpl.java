@@ -13,7 +13,7 @@ import com.applets.common.core.text.Convert;
  * 持有基金Service业务层处理
  * 
  * @author LufeiClimb
- * @date 2021-02-25
+ * @date 2021-02-26
  */
 @Service
 public class JijinChiyouServiceImpl implements IJijinChiyouService {
@@ -50,6 +50,7 @@ public class JijinChiyouServiceImpl implements IJijinChiyouService {
      */
     @Override
     public int insertJijinChiyou(JijinChiyou jijinChiyou) {
+        jijinChiyou.setCreateTime(DateUtils.getNowDate());
         return jijinChiyouMapper.insertJijinChiyou(jijinChiyou);
     }
 

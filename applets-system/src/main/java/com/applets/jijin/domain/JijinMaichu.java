@@ -27,7 +27,7 @@ public class JijinMaichu extends BaseEntity {
 
     /** 卖出时净值 */
     @Excel(name = "卖出时净值")
-    private String jingzhi;
+    private String realValue;
 
     /** 卖出份额 */
     @Excel(name = "卖出份额")
@@ -62,12 +62,12 @@ public class JijinMaichu extends BaseEntity {
     public String getName(){
         return name;
     }
-    public void setJingzhi(String jingzhi){
-        this.jingzhi = jingzhi;
+    public void setRealValue(String realValue){
+        this.realValue = realValue;
     }
 
-    public String getJingzhi(){
-        return jingzhi;
+    public String getRealValue(){
+        return realValue;
     }
     public void setNumber(String number){
         this.number = number;
@@ -97,12 +97,14 @@ public class JijinMaichu extends BaseEntity {
             .append("id", getId())
             .append("code", getCode())
             .append("name", getName())
-            .append("jingzhi", getJingzhi())
+            .append("realValue", getRealValue())
             .append("number", getNumber())
             .append("amount", getAmount())
             .append("charge", getCharge())
-            .append("updateTime", getUpdateTime())
+            .append("createBy", getCreateBy())
             .append("createTime", getCreateTime())
+            .append("updateBy", getUpdateBy())
+            .append("updateTime", getUpdateTime())
             .toString();
     }
 }

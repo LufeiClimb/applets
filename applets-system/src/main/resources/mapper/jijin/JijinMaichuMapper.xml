@@ -8,16 +8,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="id"    column="id"    />
         <result property="code"    column="code"    />
         <result property="name"    column="name"    />
-        <result property="jingzhi"    column="jingzhi"    />
+        <result property="realValue"    column="real_value"    />
         <result property="number"    column="number"    />
         <result property="amount"    column="amount"    />
         <result property="charge"    column="charge"    />
-        <result property="updateTime"    column="update_time"    />
+        <result property="createBy"    column="create_by"    />
         <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
     </resultMap>
 
     <sql id="selectJijinMaichuVo">
-        select id, code, name, jingzhi, number, amount, charge, update_time, create_time from jijin_maichu
+        select id, code, name, real_value, number, amount, charge, create_by, create_time, update_by, update_time from jijin_maichu
     </sql>
 
     <select id="selectJijinMaichuList" parameterType="JijinMaichu" resultMap="JijinMaichuResult">
@@ -25,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>  
             <if test="code != null  and code != ''"> and code = #{code}</if>
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
-            <if test="jingzhi != null  and jingzhi != ''"> and jingzhi = #{jingzhi}</if>
+            <if test="realValue != null  and realValue != ''"> and real_value = #{realValue}</if>
             <if test="number != null  and number != ''"> and number = #{number}</if>
             <if test="amount != null  and amount != ''"> and amount = #{amount}</if>
             <if test="charge != null  and charge != ''"> and charge = #{charge}</if>
@@ -42,22 +44,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="code != null">code,</if>
             <if test="name != null">name,</if>
-            <if test="jingzhi != null">jingzhi,</if>
+            <if test="realValue != null">real_value,</if>
             <if test="number != null">number,</if>
             <if test="amount != null">amount,</if>
             <if test="charge != null">charge,</if>
-            <if test="updateTime != null">update_time,</if>
+            <if test="createBy != null">create_by,</if>
             <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="code != null">#{code},</if>
             <if test="name != null">#{name},</if>
-            <if test="jingzhi != null">#{jingzhi},</if>
+            <if test="realValue != null">#{realValue},</if>
             <if test="number != null">#{number},</if>
             <if test="amount != null">#{amount},</if>
             <if test="charge != null">#{charge},</if>
-            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createBy != null">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
          </trim>
     </insert>
 
@@ -66,12 +72,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="code != null">code = #{code},</if>
             <if test="name != null">name = #{name},</if>
-            <if test="jingzhi != null">jingzhi = #{jingzhi},</if>
+            <if test="realValue != null">real_value = #{realValue},</if>
             <if test="number != null">number = #{number},</if>
             <if test="amount != null">amount = #{amount},</if>
             <if test="charge != null">charge = #{charge},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
         </trim>
         where id = #{id}
     </update>

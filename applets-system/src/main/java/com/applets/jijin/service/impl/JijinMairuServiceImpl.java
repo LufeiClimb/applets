@@ -50,6 +50,7 @@ public class JijinMairuServiceImpl implements IJijinMairuService {
      */
     @Override
     public int insertJijinMairu(JijinMairu jijinMairu) {
+        jijinMairu.setCreateTime(DateUtils.getNowDate());
         return jijinMairuMapper.insertJijinMairu(jijinMairu);
     }
 

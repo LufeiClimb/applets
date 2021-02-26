@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.applets.jijin.mapper.JijinChiyouMapper">
+<mapper namespace="com.applets.jijin.mapper.JijinShouyiMapper">
     
-    <resultMap type="JijinChiyou" id="JijinChiyouResult">
+    <resultMap type="JijinShouyi" id="JijinShouyiResult">
         <result property="id"    column="id"    />
         <result property="code"    column="code"    />
         <result property="name"    column="name"    />
@@ -24,12 +24,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateTime"    column="update_time"    />
     </resultMap>
 
-    <sql id="selectJijinChiyouVo">
-        select id, code, name, pingtai, zuhe, jingzhi, zhangfu, cost, fene, jine, yingkui, shouyilv, date, create_by, create_time, update_by, update_time from jijin_chiyou
+    <sql id="selectJijinShouyiVo">
+        select id, code, name, pingtai, zuhe, jingzhi, zhangfu, cost, fene, jine, yingkui, shouyilv, date, create_by, create_time, update_by, update_time from jijin_shouyi
     </sql>
 
-    <select id="selectJijinChiyouList" parameterType="JijinChiyou" resultMap="JijinChiyouResult">
-        <include refid="selectJijinChiyouVo"/>
+    <select id="selectJijinShouyiList" parameterType="JijinShouyi" resultMap="JijinShouyiResult">
+        <include refid="selectJijinShouyiVo"/>
         <where>  
             <if test="code != null  and code != ''"> and code = #{code}</if>
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
@@ -46,13 +46,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
     
-    <select id="selectJijinChiyouById" parameterType="Long" resultMap="JijinChiyouResult">
-        <include refid="selectJijinChiyouVo"/>
+    <select id="selectJijinShouyiById" parameterType="Long" resultMap="JijinShouyiResult">
+        <include refid="selectJijinShouyiVo"/>
         where id = #{id}
     </select>
         
-    <insert id="insertJijinChiyou" parameterType="JijinChiyou" useGeneratedKeys="true" keyProperty="id">
-        insert into jijin_chiyou
+    <insert id="insertJijinShouyi" parameterType="JijinShouyi" useGeneratedKeys="true" keyProperty="id">
+        insert into jijin_shouyi
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="code != null">code,</if>
             <if test="name != null">name,</if>
@@ -91,8 +91,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateJijinChiyou" parameterType="JijinChiyou">
-        update jijin_chiyou
+    <update id="updateJijinShouyi" parameterType="JijinShouyi">
+        update jijin_shouyi
         <trim prefix="SET" suffixOverrides=",">
             <if test="code != null">code = #{code},</if>
             <if test="name != null">name = #{name},</if>
@@ -114,12 +114,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </update>
 
-    <delete id="deleteJijinChiyouById" parameterType="Long">
-        delete from jijin_chiyou where id = #{id}
+    <delete id="deleteJijinShouyiById" parameterType="Long">
+        delete from jijin_shouyi where id = #{id}
     </delete>
 
-    <delete id="deleteJijinChiyouByIds" parameterType="String">
-        delete from jijin_chiyou where id in 
+    <delete id="deleteJijinShouyiByIds" parameterType="String">
+        delete from jijin_shouyi where id in 
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

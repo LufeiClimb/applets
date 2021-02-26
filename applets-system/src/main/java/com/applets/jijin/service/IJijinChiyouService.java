@@ -1,13 +1,14 @@
 package com.applets.jijin.service;
 
-import java.util.List;
 import com.applets.jijin.domain.JijinChiyou;
+
+import java.util.List;
 
 /**
  * 持有基金Service接口
  * 
  * @author LufeiClimb
- * @date 2021-02-25
+ * @date 2021-02-26
  */
 public interface IJijinChiyouService {
     /**

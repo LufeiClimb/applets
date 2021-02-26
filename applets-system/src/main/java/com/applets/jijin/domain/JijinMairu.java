@@ -1,10 +1,7 @@
 package com.applets.jijin.domain;
 
-import java.util.Date;
-
-import com.applets.common.core.domain.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.applets.common.annotation.Excel;
+import com.applets.common.core.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -30,7 +27,7 @@ public class JijinMairu extends BaseEntity {
 
     /** 买入时净值 */
     @Excel(name = "买入时净值")
-    private String jingzhi;
+    private String realValue;
 
     /** 买入份额 */
     @Excel(name = "买入份额")
@@ -43,11 +40,6 @@ public class JijinMairu extends BaseEntity {
     /** 手续费 */
     @Excel(name = "手续费")
     private String charge;
-
-    /** 创建时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date credateTime;
 
     public void setId(Long id){
         this.id = id;
@@ -70,12 +62,12 @@ public class JijinMairu extends BaseEntity {
     public String getName(){
         return name;
     }
-    public void setJingzhi(String jingzhi){
-        this.jingzhi = jingzhi;
+    public void setRealValue(String realValue){
+        this.realValue = realValue;
     }
 
-    public String getJingzhi(){
-        return jingzhi;
+    public String getRealValue(){
+        return realValue;
     }
     public void setNumber(String number){
         this.number = number;
@@ -98,13 +90,6 @@ public class JijinMairu extends BaseEntity {
     public String getCharge(){
         return charge;
     }
-    public void setCredateTime(Date credateTime){
-        this.credateTime = credateTime;
-    }
-
-    public Date getCredateTime(){
-        return credateTime;
-    }
 
     @Override
     public String toString() {
@@ -112,12 +97,14 @@ public class JijinMairu extends BaseEntity {
             .append("id", getId())
             .append("code", getCode())
             .append("name", getName())
-            .append("jingzhi", getJingzhi())
+            .append("realValue", getRealValue())
             .append("number", getNumber())
             .append("amount", getAmount())
             .append("charge", getCharge())
+            .append("createBy", getCreateBy())
+            .append("createTime", getCreateTime())
+            .append("updateBy", getUpdateBy())
             .append("updateTime", getUpdateTime())
-            .append("credateTime", getCredateTime())
             .toString();
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('卖出基金列表')" />
+    <th:block th:include="include :: header('收益历史列表')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -19,20 +19,48 @@
                                 <input type="text" name="name"/>
                             </li>
                             <li>
-                                <label>卖出时净值：</label>
+                                <label>购买平台：</label>
+                                <input type="text" name="pingtai"/>
+                            </li>
+                            <li>
+                                <label>基金组合：</label>
+                                <input type="text" name="zuhe"/>
+                            </li>
+                            <li>
+                                <label>最新估值：</label>
+                                <input type="text" name="estimateValue"/>
+                            </li>
+                            <li>
+                                <label>收益率：</label>
+                                <input type="text" name="realRate"/>
+                            </li>
+                            <li>
+                                <label>最新净值：</label>
                                 <input type="text" name="realValue"/>
                             </li>
                             <li>
-                                <label>卖出份额：</label>
+                                <label>当前持有成本：</label>
+                                <input type="text" name="cost"/>
+                            </li>
+                            <li>
+                                <label>当前持有份额：</label>
                                 <input type="text" name="number"/>
                             </li>
                             <li>
-                                <label>卖出金额：</label>
+                                <label>总金额：</label>
                                 <input type="text" name="amount"/>
                             </li>
                             <li>
-                                <label>手续费：</label>
-                                <input type="text" name="charge"/>
+                                <label>总盈亏：</label>
+                                <input type="text" name="profitLoss"/>
+                            </li>
+                            <li>
+                                <label>日期：</label>
+                                <input type="text" class="time-input" placeholder="请选择日期" name="date"/>
+                            </li>
+                            <li>
+                                <label>创建时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择创建时间" name="credateTime"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -44,16 +72,16 @@
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="jijin:maichu:add">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="jijin:shouyi:add">
                     <i class="fa fa-plus"></i> 添加
                 </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="jijin:maichu:edit">
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="jijin:shouyi:edit">
                     <i class="fa fa-edit"></i> 修改
                 </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="jijin:maichu:remove">
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="jijin:shouyi:remove">
                     <i class="fa fa-remove"></i> 删除
                 </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="jijin:maichu:export">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="jijin:shouyi:export">
                     <i class="fa fa-download"></i> 导出
                 </a>
             </div>
@@ -64,9 +92,9 @@
     </div>
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
-        var editFlag = [[${@permission.hasPermi('jijin:maichu:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('jijin:maichu:remove')}]];
-        var prefix = ctx + "jijin/maichu";
+        var editFlag = [[${@permission.hasPermi('jijin:shouyi:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('jijin:shouyi:remove')}]];
+        var prefix = ctx + "jijin/shouyi";
 
         $(function() {
             var options = {
@@ -75,7 +103,7 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "卖出基金",
+                modalName: "收益历史",
                 columns: [{
                     checkbox: true
                 },
@@ -93,20 +121,48 @@
                     title: '基金名称'
                 },
                 {
+                    field: 'pingtai',
+                    title: '购买平台'
+                },
+                {
+                    field: 'zuhe',
+                    title: '基金组合'
+                },
+                {
+                    field: 'estimateValue',
+                    title: '最新估值'
+                },
+                {
+                    field: 'realRate',
+                    title: '收益率'
+                },
+                {
                     field: 'realValue',
-                    title: '卖出时净值'
+                    title: '最新净值'
+                },
+                {
+                    field: 'cost',
+                    title: '当前持有成本'
                 },
                 {
                     field: 'number',
-                    title: '卖出份额'
+                    title: '当前持有份额'
                 },
                 {
                     field: 'amount',
-                    title: '卖出金额'
+                    title: '总金额'
                 },
                 {
-                    field: 'charge',
-                    title: '手续费'
+                    field: 'profitLoss',
+                    title: '总盈亏'
+                },
+                {
+                    field: 'date',
+                    title: '日期'
+                },
+                {
+                    field: 'credateTime',
+                    title: '创建时间'
                 },
                 {
                     title: '操作',

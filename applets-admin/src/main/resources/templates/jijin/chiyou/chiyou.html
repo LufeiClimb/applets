@@ -19,28 +19,44 @@
                                 <input type="text" name="name"/>
                             </li>
                             <li>
-                                <label>最新估值：</label>
-                                <input type="text" name="guzhi"/>
+                                <label>购买平台：</label>
+                                <input type="text" name="pingtai"/>
                             </li>
                             <li>
-                                <label>最新净值：</label>
+                                <label>基金组合：</label>
+                                <input type="text" name="zuhe"/>
+                            </li>
+                            <li>
+                                <label>单位净值：</label>
                                 <input type="text" name="jingzhi"/>
                             </li>
                             <li>
-                                <label>当前持有成本：</label>
+                                <label>涨跌幅：</label>
+                                <input type="text" name="zhangfu"/>
+                            </li>
+                            <li>
+                                <label>持有成本：</label>
                                 <input type="text" name="cost"/>
                             </li>
                             <li>
-                                <label>当前持有份额：</label>
-                                <input type="text" name="number"/>
+                                <label>持有份额：</label>
+                                <input type="text" name="fene"/>
                             </li>
                             <li>
                                 <label>总金额：</label>
-                                <input type="text" name="amount"/>
+                                <input type="text" name="jine"/>
                             </li>
                             <li>
-                                <label>创建时间：</label>
-                                <input type="text" class="time-input" placeholder="请选择创建时间" name="credateTime"/>
+                                <label>总盈亏：</label>
+                                <input type="text" name="yingkui"/>
+                            </li>
+                            <li>
+                                <label>总收益率：</label>
+                                <input type="text" name="shouyilv"/>
+                            </li>
+                            <li>
+                                <label>日期：</label>
+                                <input type="text" class="time-input" placeholder="请选择日期" name="date"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -52,10 +68,10 @@
             </div>
 
             <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="jijin:chiyou:add">
+                <a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="jijin:chiyou:add">
                     <i class="fa fa-plus"></i> 添加
                 </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="jijin:chiyou:edit">
+                <a class="btn btn-primary single disabled" onclick="$.operate.editFull()" shiro:hasPermission="jijin:chiyou:edit">
                     <i class="fa fa-edit"></i> 修改
                 </a>
                 <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="jijin:chiyou:remove">
@@ -101,28 +117,52 @@
                     title: '基金名称'
                 },
                 {
-                    field: 'guzhi',
-                    title: '最新估值'
+                    field: 'pingtai',
+                    title: '购买平台'
+                },
+                {
+                    field: 'zuhe',
+                    title: '基金组合'
                 },
                 {
                     field: 'jingzhi',
-                    title: '最新净值'
+                    title: '单位净值'
+                },
+                {
+                    field: 'zhangfu',
+                    title: '涨跌幅'
+                },
+                {
+                    field: 'guzhi',
+                    title: '估值'
+                },
+                {
+                    field: 'guzhiriqi',
+                    title: '估值日期'
                 },
                 {
                     field: 'cost',
-                    title: '当前持有成本'
+                    title: '持有成本'
                 },
                 {
-                    field: 'number',
-                    title: '当前持有份额'
+                    field: 'fene',
+                    title: '持有份额'
                 },
                 {
-                    field: 'amount',
+                    field: 'jine',
                     title: '总金额'
                 },
                 {
-                    field: 'credateTime',
-                    title: '创建时间'
+                    field: 'yingkui',
+                    title: '总盈亏'
+                },
+                {
+                    field: 'shouyilv',
+                    title: '总收益率'
+                },
+                {
+                    field: 'date',
+                    title: '日期'
                 },
                 {
                     title: '操作',
