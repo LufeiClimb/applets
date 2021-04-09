@@ -1,5 +1,7 @@
 package com.applets.framework.config;
 
+import com.applets.common.config.AppletsConfig;
+import com.applets.common.constant.Constants;
 import com.applets.framework.interceptor.RepeatSubmitInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,52 +10,42 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import com.applets.common.config.AppletsConfig;
-import com.applets.common.constant.Constants;
 
 /**
  * 通用配置
- * 
+ *
  * @author LufeiClimb
  */
 @Configuration
-public class ResourcesConfig implements WebMvcConfigurer
-{
-    /**
-     * 首页地址
-     */
+public class ResourcesConfig implements WebMvcConfigurer {
+    /** 首页地址 */
     @Value("${shiro.user.indexUrl}")
     private String indexUrl;
 
-    @Autowired
-    private RepeatSubmitInterceptor repeatSubmitInterceptor;
+    @Autowired private RepeatSubmitInterceptor repeatSubmitInterceptor;
 
-    /**
-     * 默认首页的设置，当输入域名是可以自动跳转到默认指定的网页
-     */
+    /** 默认首页的设置，当输入域名是可以自动跳转到默认指定的网页 */
     @Override
-    public void addViewControllers(ViewControllerRegistry registry)
-    {
+    public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("forward:" + indexUrl);
     }
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry)
-    {
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         /** 本地文件上传路径 */
-        registry.addResourceHandler(Constants.RESOURCE_PREFIX + "/**").addResourceLocations("file:" + AppletsConfig.getProfile() + "/");
+        registry.addResourceHandler(Constants.RESOURCE_PREFIX + "/**")
+                .addResourceLocations("file:" + AppletsConfig.getProfile() + "/");
 
         /** swagger配置 */
-        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
-    /**
-     * 自定义拦截规则
-     */
+    /** 自定义拦截规则 */
     @Override
-    public void addInterceptors(InterceptorRegistry registry)
-    {
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(repeatSubmitInterceptor).addPathPatterns("/**");
     }
 }

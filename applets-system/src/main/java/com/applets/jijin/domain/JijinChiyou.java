@@ -1,10 +1,7 @@
 package com.applets.jijin.domain;
 
-import java.util.Date;
-
-import com.applets.common.core.domain.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.applets.common.annotation.Excel;
+import com.applets.common.core.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -76,124 +73,124 @@ public class JijinChiyou extends BaseEntity {
     @Excel(name = "净值日期")
     private String date;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCode() {
         return code;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setPingtai(String pingtai) {
-        this.pingtai = pingtai;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPingtai() {
         return pingtai;
     }
 
-    public void setZuhe(String zuhe) {
-        this.zuhe = zuhe;
+    public void setPingtai(String pingtai) {
+        this.pingtai = pingtai;
     }
 
     public String getZuhe() {
         return zuhe;
     }
 
-    public void setJingzhi(String jingzhi) {
-        this.jingzhi = jingzhi;
+    public void setZuhe(String zuhe) {
+        this.zuhe = zuhe;
     }
 
     public String getJingzhi() {
         return jingzhi;
     }
 
-    public void setZhangfu(String zhangfu) {
-        this.zhangfu = zhangfu;
+    public void setJingzhi(String jingzhi) {
+        this.jingzhi = jingzhi;
     }
 
     public String getZhangfu() {
         return zhangfu;
     }
 
-    public void setGuzhi(String guzhi) {
-        this.guzhi = guzhi;
+    public void setZhangfu(String zhangfu) {
+        this.zhangfu = zhangfu;
     }
 
     public String getGuzhi() {
         return guzhi;
     }
 
-    public void setCost(String cost) {
-        this.cost = cost;
+    public void setGuzhi(String guzhi) {
+        this.guzhi = guzhi;
     }
 
     public String getCost() {
         return cost;
     }
 
-    public void setFene(String fene) {
-        this.fene = fene;
+    public void setCost(String cost) {
+        this.cost = cost;
     }
 
     public String getFene() {
         return fene;
     }
 
-    public void setGuzhiriqi(String guzhiriqi) {
-        this.guzhiriqi = guzhiriqi;
+    public void setFene(String fene) {
+        this.fene = fene;
     }
 
     public String getGuzhiriqi() {
         return guzhiriqi;
     }
 
-    public void setJine(String jine) {
-        this.jine = jine;
+    public void setGuzhiriqi(String guzhiriqi) {
+        this.guzhiriqi = guzhiriqi;
     }
 
     public String getJine() {
         return jine;
     }
 
-    public void setYingkui(String yingkui) {
-        this.yingkui = yingkui;
+    public void setJine(String jine) {
+        this.jine = jine;
     }
 
     public String getYingkui() {
         return yingkui;
     }
 
-    public void setShouyilv(String shouyilv) {
-        this.shouyilv = shouyilv;
+    public void setYingkui(String yingkui) {
+        this.yingkui = yingkui;
     }
 
     public String getShouyilv() {
         return shouyilv;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setShouyilv(String shouyilv) {
+        this.shouyilv = shouyilv;
     }
 
     public String getDate() {
         return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @Override

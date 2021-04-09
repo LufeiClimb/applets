@@ -1,14 +1,19 @@
 package com.applets.generator.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpServletResponse;
-
+import com.alibaba.fastjson.JSON;
+import com.applets.common.annotation.Log;
+import com.applets.common.core.controller.BaseController;
+import com.applets.common.core.domain.AjaxResult;
+import com.applets.common.core.domain.CxSelect;
+import com.applets.common.core.page.TableDataInfo;
+import com.applets.common.core.text.Convert;
+import com.applets.common.enums.BusinessType;
+import com.applets.common.utils.StringUtils;
+import com.applets.common.utils.security.PermissionUtils;
 import com.applets.generator.domain.GenTable;
 import com.applets.generator.domain.GenTableColumn;
 import com.applets.generator.service.IGenTableColumnService;
+import com.applets.generator.service.IGenTableService;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +25,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.alibaba.fastjson.JSON;
-import com.applets.common.annotation.Log;
-import com.applets.common.core.controller.BaseController;
-import com.applets.common.core.domain.AjaxResult;
-import com.applets.common.core.domain.CxSelect;
-import com.applets.common.core.page.TableDataInfo;
-import com.applets.common.core.text.Convert;
-import com.applets.common.enums.BusinessType;
-import com.applets.common.utils.StringUtils;
-import com.applets.common.utils.security.PermissionUtils;
-import com.applets.generator.service.IGenTableService;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 代码生成 操作处理
@@ -209,7 +209,8 @@ public class GenController extends BaseController {
     /** 生成zip文件 */
     private void genCode(HttpServletResponse response, byte[] data) throws IOException {
         response.reset();
-        response.setHeader("Content-Disposition", "attachment; filename=\"applets-code-generator.zip\"");
+        response.setHeader(
+                "Content-Disposition", "attachment; filename=\"applets-code-generator.zip\"");
         response.addHeader("Content-Length", "" + data.length);
         response.setContentType("application/octet-stream; charset=UTF-8");
         IOUtils.write(data, response.getOutputStream());

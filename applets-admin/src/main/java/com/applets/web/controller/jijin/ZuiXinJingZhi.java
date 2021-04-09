@@ -8,14 +8,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,7 +62,6 @@ public class ZuiXinJingZhi {
         for (String s : guzhi) {
             System.out.println(s);
         }
-
     }
 
     @GetMapping("/jiJinXinXi/{code}")
@@ -76,8 +73,7 @@ public class ZuiXinJingZhi {
 
         JSONObject param = new JSONObject();
 
-        String cookie =
-                "";
+        String cookie = "";
         String url = "https://www.howbuy.com/fund/" + code + "/";
         String formResult = HttpUtil.httpForm(url, param, cookie);
 

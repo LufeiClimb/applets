@@ -1,16 +1,16 @@
 package com.applets.jijin.domain;
 
-import java.util.Date;
-
+import com.applets.common.annotation.Excel;
 import com.applets.common.core.domain.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.applets.common.annotation.Excel;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import java.util.Date;
+
 /**
  * 收益历史对象 jijin_shouyi
- * 
+ *
  * @author LufeiClimb
  * @date 2021-02-26
  */
@@ -77,134 +77,148 @@ public class JijinShouyi extends BaseEntity {
     @Excel(name = "净值日期", width = 30, dateFormat = "yyyy-MM-dd")
     private Date date;
 
-    public void setId(Long id){
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getId(){
-        return id;
+    public String getCode() {
+        return code;
     }
-    public void setCode(String code){
+
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public String getCode(){
-        return code;
+    public String getName() {
+        return name;
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getName(){
-        return name;
+    public String getPingtai() {
+        return pingtai;
     }
-    public void setPingtai(String pingtai){
+
+    public void setPingtai(String pingtai) {
         this.pingtai = pingtai;
     }
 
-    public String getPingtai(){
-        return pingtai;
+    public String getZuhe() {
+        return zuhe;
     }
-    public void setZuhe(String zuhe){
+
+    public void setZuhe(String zuhe) {
         this.zuhe = zuhe;
     }
 
-    public String getZuhe(){
-        return zuhe;
+    public String getJingzhi() {
+        return jingzhi;
     }
-    public void setJingzhi(String jingzhi){
+
+    public void setJingzhi(String jingzhi) {
         this.jingzhi = jingzhi;
     }
 
-    public String getJingzhi(){
-        return jingzhi;
+    public String getZhangfu() {
+        return zhangfu;
     }
-    public void setZhangfu(String zhangfu){
+
+    public void setZhangfu(String zhangfu) {
         this.zhangfu = zhangfu;
     }
 
-    public String getZhangfu(){
-        return zhangfu;
+    public String getGuzhi() {
+        return guzhi;
     }
-    public void setGuzhi(String guzhi){
+
+    public void setGuzhi(String guzhi) {
         this.guzhi = guzhi;
     }
 
-    public String getGuzhi(){
-        return guzhi;
+    public String getCost() {
+        return cost;
     }
-    public void setCost(String cost){
+
+    public void setCost(String cost) {
         this.cost = cost;
     }
 
-    public String getCost(){
-        return cost;
+    public String getFene() {
+        return fene;
     }
-    public void setFene(String fene){
+
+    public void setFene(String fene) {
         this.fene = fene;
     }
 
-    public String getFene(){
-        return fene;
+    public String getGuzhiriqi() {
+        return guzhiriqi;
     }
-    public void setGuzhiriqi(String guzhiriqi){
+
+    public void setGuzhiriqi(String guzhiriqi) {
         this.guzhiriqi = guzhiriqi;
     }
 
-    public String getGuzhiriqi(){
-        return guzhiriqi;
+    public String getJine() {
+        return jine;
     }
-    public void setJine(String jine){
+
+    public void setJine(String jine) {
         this.jine = jine;
     }
 
-    public String getJine(){
-        return jine;
+    public String getYingkui() {
+        return yingkui;
     }
-    public void setYingkui(String yingkui){
+
+    public void setYingkui(String yingkui) {
         this.yingkui = yingkui;
     }
 
-    public String getYingkui(){
-        return yingkui;
+    public String getShouyilv() {
+        return shouyilv;
     }
-    public void setShouyilv(String shouyilv){
+
+    public void setShouyilv(String shouyilv) {
         this.shouyilv = shouyilv;
     }
 
-    public String getShouyilv(){
-        return shouyilv;
-    }
-    public void setDate(Date date){
-        this.date = date;
+    public Date getDate() {
+        return date;
     }
 
-    public Date getDate(){
-        return date;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
-            .append("code", getCode())
-            .append("name", getName())
-            .append("pingtai", getPingtai())
-            .append("zuhe", getZuhe())
-            .append("jingzhi", getJingzhi())
-            .append("zhangfu", getZhangfu())
-            .append("guzhi", getGuzhi())
-            .append("cost", getCost())
-            .append("fene", getFene())
-            .append("guzhiriqi", getGuzhiriqi())
-            .append("jine", getJine())
-            .append("yingkui", getYingkui())
-            .append("shouyilv", getShouyilv())
-            .append("date", getDate())
-            .append("createBy", getCreateBy())
-            .append("createTime", getCreateTime())
-            .append("updateBy", getUpdateBy())
-            .append("updateTime", getUpdateTime())
-            .toString();
+                .append("id", getId())
+                .append("code", getCode())
+                .append("name", getName())
+                .append("pingtai", getPingtai())
+                .append("zuhe", getZuhe())
+                .append("jingzhi", getJingzhi())
+                .append("zhangfu", getZhangfu())
+                .append("guzhi", getGuzhi())
+                .append("cost", getCost())
+                .append("fene", getFene())
+                .append("guzhiriqi", getGuzhiriqi())
+                .append("jine", getJine())
+                .append("yingkui", getYingkui())
+                .append("shouyilv", getShouyilv())
+                .append("date", getDate())
+                .append("createBy", getCreateBy())
+                .append("createTime", getCreateTime())
+                .append("updateBy", getUpdateBy())
+                .append("updateTime", getUpdateTime())
+                .toString();
     }
 }

@@ -1,33 +1,30 @@
 package com.applets.framework.shiro.service;
 
-import java.io.Serializable;
-
+import com.applets.common.utils.StringUtils;
 import com.applets.framework.shiro.session.OnlineSession;
+import com.applets.system.domain.SysUserOnline;
+import com.applets.system.service.ISysUserOnlineService;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.applets.common.utils.StringUtils;
-import com.applets.system.domain.SysUserOnline;
-import com.applets.system.service.ISysUserOnlineService;
+
+import java.io.Serializable;
 
 /**
  * 会话db操作处理
- * 
+ *
  * @author LufeiClimb
  */
 @Component
-public class SysShiroService
-{
-    @Autowired
-    private ISysUserOnlineService onlineService;
+public class SysShiroService {
+    @Autowired private ISysUserOnlineService onlineService;
 
     /**
      * 删除会话
      *
      * @param onlineSession 会话信息
      */
-    public void deleteSession(OnlineSession onlineSession)
-    {
+    public void deleteSession(OnlineSession onlineSession) {
         onlineService.deleteOnlineById(String.valueOf(onlineSession.getId()));
     }
 
@@ -37,17 +34,14 @@ public class SysShiroService
      * @param sessionId
      * @return
      */
-    public Session getSession(Serializable sessionId)
-    {
+    public Session getSession(Serializable sessionId) {
         SysUserOnline userOnline = onlineService.selectOnlineById(String.valueOf(sessionId));
         return StringUtils.isNull(userOnline) ? null : createSession(userOnline);
     }
 
-    public Session createSession(SysUserOnline userOnline)
-    {
+    public Session createSession(SysUserOnline userOnline) {
         OnlineSession onlineSession = new OnlineSession();
-        if (StringUtils.isNotNull(userOnline))
-        {
+        if (StringUtils.isNotNull(userOnline)) {
             onlineSession.setId(userOnline.getSessionId());
             onlineSession.setHost(userOnline.getIpaddr());
             onlineSession.setBrowser(userOnline.getBrowser());

@@ -1,6 +1,5 @@
 package com.applets.common.utils;
 
-
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
@@ -59,7 +58,7 @@ public class HttpUtil {
     // 默认链接请求超时时间
     private static final int DEFAULT_CONNECTION_REQUEST_TIMEOUT = 60000;
 
-   /**
+    /**
      * post 请求
      *
      * @param url url地址
@@ -204,26 +203,6 @@ public class HttpUtil {
         return Objects.requireNonNull(sslcontext);
     }
 
-    /**
-     * 自定义私有类
-     *
-     * @author haow
-     */
-    static class TrustAnyTrustManager implements X509TrustManager {
-        @Override
-        public void checkClientTrusted(X509Certificate[] x509Certificates, String s)
-                throws CertificateException {}
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] x509Certificates, String s)
-                throws CertificateException {}
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return new X509Certificate[0];
-        }
-    }
-
     public static String httpForm(String httpUrl, JSONObject param, String cookie) {
         String formResult = null;
         HttpURLConnection connection = null;
@@ -323,4 +302,23 @@ public class HttpUtil {
         return prestr.toString();
     }
 
+    /**
+     * 自定义私有类
+     *
+     * @author haow
+     */
+    static class TrustAnyTrustManager implements X509TrustManager {
+        @Override
+        public void checkClientTrusted(X509Certificate[] x509Certificates, String s)
+                throws CertificateException {}
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] x509Certificates, String s)
+                throws CertificateException {}
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+    }
 }

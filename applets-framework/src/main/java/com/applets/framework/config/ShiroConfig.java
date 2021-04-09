@@ -1,14 +1,19 @@
 package com.applets.framework.config;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import javax.servlet.Filter;
-
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.applets.common.constant.Constants;
+import com.applets.common.utils.StringUtils;
+import com.applets.common.utils.spring.SpringUtils;
+import com.applets.framework.shiro.realm.UserRealm;
+import com.applets.framework.shiro.session.OnlineSessionDAO;
 import com.applets.framework.shiro.session.OnlineSessionFactory;
+import com.applets.framework.shiro.web.filter.LogoutFilter;
+import com.applets.framework.shiro.web.filter.captcha.CaptchaValidateFilter;
+import com.applets.framework.shiro.web.filter.kickout.KickoutSessionFilter;
+import com.applets.framework.shiro.web.filter.online.OnlineSessionFilter;
 import com.applets.framework.shiro.web.filter.sync.SyncOnlineSessionFilter;
+import com.applets.framework.shiro.web.session.OnlineWebSessionManager;
+import com.applets.framework.shiro.web.session.SpringSessionValidationScheduler;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
@@ -24,18 +29,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.applets.common.constant.Constants;
-import com.applets.common.utils.StringUtils;
-import com.applets.common.utils.spring.SpringUtils;
-import com.applets.framework.shiro.realm.UserRealm;
-import com.applets.framework.shiro.session.OnlineSessionDAO;
-import com.applets.framework.shiro.web.filter.LogoutFilter;
-import com.applets.framework.shiro.web.filter.captcha.CaptchaValidateFilter;
-import com.applets.framework.shiro.web.filter.kickout.KickoutSessionFilter;
-import com.applets.framework.shiro.web.filter.online.OnlineSessionFilter;
-import com.applets.framework.shiro.web.session.OnlineWebSessionManager;
-import com.applets.framework.shiro.web.session.SpringSessionValidationScheduler;
-import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+
+import javax.servlet.Filter;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 权限配置加载

@@ -1,28 +1,28 @@
 package com.applets.jijin.service.impl;
 
-import java.util.List;
+import com.applets.common.core.text.Convert;
 import com.applets.common.utils.DateUtils;
+import com.applets.jijin.domain.JijinMaichu;
+import com.applets.jijin.mapper.JijinMaichuMapper;
+import com.applets.jijin.service.IJijinMaichuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.applets.jijin.mapper.JijinMaichuMapper;
-import com.applets.jijin.domain.JijinMaichu;
-import com.applets.jijin.service.IJijinMaichuService;
-import com.applets.common.core.text.Convert;
+
+import java.util.List;
 
 /**
  * 卖出基金Service业务层处理
- * 
+ *
  * @author LufeiClimb
  * @date 2021-02-25
  */
 @Service
 public class JijinMaichuServiceImpl implements IJijinMaichuService {
-    @Autowired
-    private JijinMaichuMapper jijinMaichuMapper;
+    @Autowired private JijinMaichuMapper jijinMaichuMapper;
 
     /**
      * 查询卖出基金
-     * 
+     *
      * @param id 卖出基金ID
      * @return 卖出基金
      */
@@ -33,7 +33,7 @@ public class JijinMaichuServiceImpl implements IJijinMaichuService {
 
     /**
      * 查询卖出基金列表
-     * 
+     *
      * @param jijinMaichu 卖出基金
      * @return 卖出基金
      */
@@ -44,7 +44,7 @@ public class JijinMaichuServiceImpl implements IJijinMaichuService {
 
     /**
      * 新增卖出基金
-     * 
+     *
      * @param jijinMaichu 卖出基金
      * @return 结果
      */
@@ -56,7 +56,7 @@ public class JijinMaichuServiceImpl implements IJijinMaichuService {
 
     /**
      * 修改卖出基金
-     * 
+     *
      * @param jijinMaichu 卖出基金
      * @return 结果
      */
@@ -68,7 +68,7 @@ public class JijinMaichuServiceImpl implements IJijinMaichuService {
 
     /**
      * 删除卖出基金对象
-     * 
+     *
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -79,7 +79,7 @@ public class JijinMaichuServiceImpl implements IJijinMaichuService {
 
     /**
      * 删除卖出基金信息
-     * 
+     *
      * @param id 卖出基金ID
      * @return 结果
      */

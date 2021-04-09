@@ -1,18 +1,19 @@
 package com.applets.jijin.service;
 
-import java.util.List;
 import com.applets.jijin.domain.JijinMaichu;
+
+import java.util.List;
 
 /**
  * 卖出基金Service接口
- * 
+ *
  * @author LufeiClimb
  * @date 2021-02-25
  */
 public interface IJijinMaichuService {
     /**
      * 查询卖出基金
-     * 
+     *
      * @param id 卖出基金ID
      * @return 卖出基金
      */
@@ -20,7 +21,7 @@ public interface IJijinMaichuService {
 
     /**
      * 查询卖出基金列表
-     * 
+     *
      * @param jijinMaichu 卖出基金
      * @return 卖出基金集合
      */
@@ -28,7 +29,7 @@ public interface IJijinMaichuService {
 
     /**
      * 新增卖出基金
-     * 
+     *
      * @param jijinMaichu 卖出基金
      * @return 结果
      */
@@ -36,7 +37,7 @@ public interface IJijinMaichuService {
 
     /**
      * 修改卖出基金
-     * 
+     *
      * @param jijinMaichu 卖出基金
      * @return 结果
      */
@@ -44,7 +45,7 @@ public interface IJijinMaichuService {
 
     /**
      * 批量删除卖出基金
-     * 
+     *
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -52,7 +53,7 @@ public interface IJijinMaichuService {
 
     /**
      * 删除卖出基金信息
-     * 
+     *
      * @param id 卖出基金ID
      * @return 结果
      */

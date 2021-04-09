@@ -1,28 +1,28 @@
 package com.applets.jijin.service.impl;
 
-import java.util.List;
+import com.applets.common.core.text.Convert;
 import com.applets.common.utils.DateUtils;
+import com.applets.jijin.domain.JijinShouyi;
+import com.applets.jijin.mapper.JijinShouyiMapper;
+import com.applets.jijin.service.IJijinShouyiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.applets.jijin.mapper.JijinShouyiMapper;
-import com.applets.jijin.domain.JijinShouyi;
-import com.applets.jijin.service.IJijinShouyiService;
-import com.applets.common.core.text.Convert;
+
+import java.util.List;
 
 /**
  * 收益历史Service业务层处理
- * 
+ *
  * @author LufeiClimb
  * @date 2021-02-26
  */
 @Service
 public class JijinShouyiServiceImpl implements IJijinShouyiService {
-    @Autowired
-    private JijinShouyiMapper jijinShouyiMapper;
+    @Autowired private JijinShouyiMapper jijinShouyiMapper;
 
     /**
      * 查询收益历史
-     * 
+     *
      * @param id 收益历史ID
      * @return 收益历史
      */
@@ -33,7 +33,7 @@ public class JijinShouyiServiceImpl implements IJijinShouyiService {
 
     /**
      * 查询收益历史列表
-     * 
+     *
      * @param jijinShouyi 收益历史
      * @return 收益历史
      */
@@ -44,7 +44,7 @@ public class JijinShouyiServiceImpl implements IJijinShouyiService {
 
     /**
      * 新增收益历史
-     * 
+     *
      * @param jijinShouyi 收益历史
      * @return 结果
      */
@@ -56,7 +56,7 @@ public class JijinShouyiServiceImpl implements IJijinShouyiService {
 
     /**
      * 修改收益历史
-     * 
+     *
      * @param jijinShouyi 收益历史
      * @return 结果
      */
@@ -68,7 +68,7 @@ public class JijinShouyiServiceImpl implements IJijinShouyiService {
 
     /**
      * 删除收益历史对象
-     * 
+     *
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -79,7 +79,7 @@ public class JijinShouyiServiceImpl implements IJijinShouyiService {
 
     /**
      * 删除收益历史信息
-     * 
+     *
      * @param id 收益历史ID
      * @return 结果
      */

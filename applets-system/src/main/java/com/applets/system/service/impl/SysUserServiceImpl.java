@@ -1,14 +1,5 @@
 package com.applets.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.applets.system.service.ISysConfigService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.applets.common.annotation.DataScope;
 import com.applets.common.constant.UserConstants;
 import com.applets.common.core.domain.entity.SysRole;
@@ -25,7 +16,16 @@ import com.applets.system.mapper.SysRoleMapper;
 import com.applets.system.mapper.SysUserMapper;
 import com.applets.system.mapper.SysUserPostMapper;
 import com.applets.system.mapper.SysUserRoleMapper;
+import com.applets.system.service.ISysConfigService;
 import com.applets.system.service.ISysUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用户 业务层处理

@@ -1,28 +1,28 @@
 package com.applets.jijin.service.impl;
 
-import java.util.List;
+import com.applets.common.core.text.Convert;
 import com.applets.common.utils.DateUtils;
+import com.applets.jijin.domain.JijinChiyou;
+import com.applets.jijin.mapper.JijinChiyouMapper;
+import com.applets.jijin.service.IJijinChiyouService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.applets.jijin.mapper.JijinChiyouMapper;
-import com.applets.jijin.domain.JijinChiyou;
-import com.applets.jijin.service.IJijinChiyouService;
-import com.applets.common.core.text.Convert;
+
+import java.util.List;
 
 /**
  * 持有基金Service业务层处理
- * 
+ *
  * @author LufeiClimb
  * @date 2021-02-26
  */
 @Service
 public class JijinChiyouServiceImpl implements IJijinChiyouService {
-    @Autowired
-    private JijinChiyouMapper jijinChiyouMapper;
+    @Autowired private JijinChiyouMapper jijinChiyouMapper;
 
     /**
      * 查询持有基金
-     * 
+     *
      * @param id 持有基金ID
      * @return 持有基金
      */
@@ -33,7 +33,7 @@ public class JijinChiyouServiceImpl implements IJijinChiyouService {
 
     /**
      * 查询持有基金列表
-     * 
+     *
      * @param jijinChiyou 持有基金
      * @return 持有基金
      */
@@ -44,7 +44,7 @@ public class JijinChiyouServiceImpl implements IJijinChiyouService {
 
     /**
      * 新增持有基金
-     * 
+     *
      * @param jijinChiyou 持有基金
      * @return 结果
      */
@@ -56,7 +56,7 @@ public class JijinChiyouServiceImpl implements IJijinChiyouService {
 
     /**
      * 修改持有基金
-     * 
+     *
      * @param jijinChiyou 持有基金
      * @return 结果
      */
@@ -68,7 +68,7 @@ public class JijinChiyouServiceImpl implements IJijinChiyouService {
 
     /**
      * 删除持有基金对象
-     * 
+     *
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -79,7 +79,7 @@ public class JijinChiyouServiceImpl implements IJijinChiyouService {
 
     /**
      * 删除持有基金信息
-     * 
+     *
      * @param id 持有基金ID
      * @return 结果
      */

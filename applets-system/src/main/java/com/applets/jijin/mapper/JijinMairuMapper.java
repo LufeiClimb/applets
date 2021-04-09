@@ -1,18 +1,19 @@
 package com.applets.jijin.mapper;
 
-import java.util.List;
 import com.applets.jijin.domain.JijinMairu;
+
+import java.util.List;
 
 /**
  * 买入基金Mapper接口
- * 
+ *
  * @author LufeiClimb
  * @date 2021-02-25
  */
 public interface JijinMairuMapper {
     /**
      * 查询买入基金
-     * 
+     *
      * @param id 买入基金ID
      * @return 买入基金
      */
@@ -20,7 +21,7 @@ public interface JijinMairuMapper {
 
     /**
      * 查询买入基金列表
-     * 
+     *
      * @param jijinMairu 买入基金
      * @return 买入基金集合
      */
@@ -28,7 +29,7 @@ public interface JijinMairuMapper {
 
     /**
      * 新增买入基金
-     * 
+     *
      * @param jijinMairu 买入基金
      * @return 结果
      */
@@ -36,7 +37,7 @@ public interface JijinMairuMapper {
 
     /**
      * 修改买入基金
-     * 
+     *
      * @param jijinMairu 买入基金
      * @return 结果
      */
@@ -44,7 +45,7 @@ public interface JijinMairuMapper {
 
     /**
      * 删除买入基金
-     * 
+     *
      * @param id 买入基金ID
      * @return 结果
      */
@@ -52,7 +53,7 @@ public interface JijinMairuMapper {
 
     /**
      * 批量删除买入基金
-     * 
+     *
      * @param ids 需要删除的数据ID
      * @return 结果
      */
