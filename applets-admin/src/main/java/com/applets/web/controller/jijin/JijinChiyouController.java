@@ -5,11 +5,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.applets.common.annotation.Log;
 import com.applets.common.enums.BusinessType;
 import com.applets.jijin.domain.JijinChiyou;
@@ -23,7 +19,7 @@ import com.applets.common.core.page.TableDataInfo;
  * 持有基金Controller
  * 
  * @author LufeiClimb
- * @date 2021-02-25
+ * @date 2021-02-26
  */
 @Controller
 @RequestMapping("/jijin/chiyou")

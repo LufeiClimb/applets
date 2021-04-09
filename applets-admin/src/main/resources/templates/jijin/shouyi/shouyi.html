@@ -35,12 +35,20 @@
                                 <input type="text" name="zhangfu"/>
                             </li>
                             <li>
+                                <label>估值：</label>
+                                <input type="text" name="guzhi"/>
+                            </li>
+                            <li>
                                 <label>持有成本：</label>
                                 <input type="text" name="cost"/>
                             </li>
                             <li>
                                 <label>持有份额：</label>
                                 <input type="text" name="fene"/>
+                            </li>
+                            <li>
+                                <label>估值日期：</label>
+                                <input type="text" name="guzhiriqi"/>
                             </li>
                             <li>
                                 <label>总金额：</label>
@@ -55,7 +63,7 @@
                                 <input type="text" name="shouyilv"/>
                             </li>
                             <li>
-                                <label>日期：</label>
+                                <label>净值日期：</label>
                                 <input type="text" class="time-input" placeholder="请选择日期" name="date"/>
                             </li>
                             <li>
@@ -133,12 +141,20 @@
                     title: '涨跌幅'
                 },
                 {
+                    field: 'guzhi',
+                    title: '估值'
+                },
+                {
                     field: 'cost',
                     title: '持有成本'
                 },
                 {
                     field: 'fene',
                     title: '持有份额'
+                },
+                {
+                    field: 'guzhiriqi',
+                    title: '估值日期'
                 },
                 {
                     field: 'jine',
@@ -154,7 +170,7 @@
                 },
                 {
                     field: 'date',
-                    title: '日期'
+                    title: '净值日期'
                 },
                 {
                     title: '操作',

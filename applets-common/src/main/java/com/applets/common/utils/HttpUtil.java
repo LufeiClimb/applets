@@ -50,7 +50,6 @@ import java.util.Objects;
  * @since 1.8
  */
 public class HttpUtil {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpUtil.class);
 
     // 默认链接超时时间

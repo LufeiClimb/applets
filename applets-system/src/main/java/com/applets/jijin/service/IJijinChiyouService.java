@@ -1,8 +1,7 @@
 package com.applets.jijin.service;
 
-import com.applets.jijin.domain.JijinChiyou;
-
 import java.util.List;
+import com.applets.jijin.domain.JijinChiyou;
 
 /**
  * 持有基金Service接口

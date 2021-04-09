@@ -1,108 +1,90 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('持有基金列表')" />
+    <th:block th:include="include :: header('持有基金列表')"/>
 </head>
 <body class="gray-bg">
-     <div class="container-div">
-        <div class="row">
-            <div class="col-sm-12 search-collapse">
-                <form id="formId">
-                    <div class="select-list">
-                        <ul>
-                            <li>
-                                <label>基金代码：</label>
-                                <input type="text" name="code"/>
-                            </li>
-                            <li>
-                                <label>基金名称：</label>
-                                <input type="text" name="name"/>
-                            </li>
-                            <li>
-                                <label>购买平台：</label>
-                                <input type="text" name="pingtai"/>
-                            </li>
-                            <li>
-                                <label>基金组合：</label>
-                                <input type="text" name="zuhe"/>
-                            </li>
-                            <li>
-                                <label>单位净值：</label>
-                                <input type="text" name="jingzhi"/>
-                            </li>
-                            <li>
-                                <label>涨跌幅：</label>
-                                <input type="text" name="zhangfu"/>
-                            </li>
-                            <li>
-                                <label>持有成本：</label>
-                                <input type="text" name="cost"/>
-                            </li>
-                            <li>
-                                <label>持有份额：</label>
-                                <input type="text" name="fene"/>
-                            </li>
-                            <li>
-                                <label>总金额：</label>
-                                <input type="text" name="jine"/>
-                            </li>
-                            <li>
-                                <label>总盈亏：</label>
-                                <input type="text" name="yingkui"/>
-                            </li>
-                            <li>
-                                <label>总收益率：</label>
-                                <input type="text" name="shouyilv"/>
-                            </li>
-                            <li>
-                                <label>日期：</label>
-                                <input type="text" class="time-input" placeholder="请选择日期" name="date"/>
-                            </li>
-                            <li>
-                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
-                            </li>
-                        </ul>
-                    </div>
-                </form>
-            </div>
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>基金代码：</label>
+                            <input type="text" name="code"/>
+                        </li>
+                        <li>
+                            <label>基金名称：</label>
+                            <input type="text" name="name"/>
+                        </li>
+                        <li>
+                            <label>购买平台：</label>
+                            <input type="text" name="pingtai" list="typelist"/>
+                            <datalist id="typelist">
+                                <option>支付宝</option>
+                                <option>蛋卷</option>
+                            </datalist>
+                        </li>
+                        <li>
+                            <label>基金组合：</label>
+                            <input type="text" name="zuhe"/>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm"
+                               onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm"
+                               onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
 
-            <div class="btn-group-sm" id="toolbar" role="group">
-                <a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="jijin:chiyou:add">
-                    <i class="fa fa-plus"></i> 添加
-                </a>
-                <a class="btn btn-primary single disabled" onclick="$.operate.editFull()" shiro:hasPermission="jijin:chiyou:edit">
-                    <i class="fa fa-edit"></i> 修改
-                </a>
-                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="jijin:chiyou:remove">
-                    <i class="fa fa-remove"></i> 删除
-                </a>
-                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="jijin:chiyou:export">
-                    <i class="fa fa-download"></i> 导出
-                </a>
-            </div>
-            <div class="col-sm-12 select-table table-striped">
-                <table id="bootstrap-table"></table>
-            </div>
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.addFull()"
+               shiro:hasPermission="jijin:chiyou:add">
+                <i class="fa fa-plus"></i> 添加
+            </a>
+            <a class="btn btn-primary single disabled" onclick="$.operate.editFull()"
+               shiro:hasPermission="jijin:chiyou:edit">
+                <i class="fa fa-edit"></i> 修改
+            </a>
+            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="jijin:chiyou:remove">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+            <a class="btn btn-warning" onclick="$.table.exportExcel()"
+               shiro:hasPermission="jijin:chiyou:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
         </div>
     </div>
-    <th:block th:include="include :: footer" />
-    <script th:inline="javascript">
-        var editFlag = [[${@permission.hasPermi('jijin:chiyou:edit')}]];
-        var removeFlag = [[${@permission.hasPermi('jijin:chiyou:remove')}]];
-        var prefix = ctx + "jijin/chiyou";
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('jijin:chiyou:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('jijin:chiyou:remove')}]];
+    var prefix = ctx + "jijin/chiyou";
 
-        $(function() {
-            var options = {
-                url: prefix + "/list",
-                createUrl: prefix + "/add",
-                updateUrl: prefix + "/edit/{id}",
-                removeUrl: prefix + "/remove",
-                exportUrl: prefix + "/export",
-                modalName: "持有基金",
-                columns: [{
-                    checkbox: true
-                },
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "持有基金",
+            sortName: 'shouyilv',
+            sortOrder: 'desc',
+            pageSize: 50,
+            columns: [{
+                checkbox: true
+            },
                 {
                     field: 'id',
                     title: 'id',
@@ -110,35 +92,35 @@
                 },
                 {
                     field: 'code',
-                    title: '基金代码'
+                    title: '基金代码',
+                    sortable: true
                 },
                 {
                     field: 'name',
-                    title: '基金名称'
+                    title: '基金名称',
+                    sortable: true
                 },
                 {
                     field: 'pingtai',
-                    title: '购买平台'
+                    title: '平台'
                 },
                 {
                     field: 'zuhe',
-                    title: '基金组合'
-                },
-                {
-                    field: 'jingzhi',
-                    title: '单位净值'
+                    title: '组合'
                 },
                 {
                     field: 'zhangfu',
-                    title: '涨跌幅'
+                    title: '涨跌幅',
+                    sortable: true
                 },
                 {
-                    field: 'guzhi',
-                    title: '估值'
+                    field: 'jingzhi',
+                    title: '净值',
+                    sortable: true
                 },
                 {
-                    field: 'guzhiriqi',
-                    title: '估值日期'
+                    field: 'date',
+                    title: '净值日期'
                 },
                 {
                     field: 'cost',
@@ -149,34 +131,66 @@
                     title: '持有份额'
                 },
                 {
+                    field: 'guzhi',
+                    title: '估值'
+                },
+                {
+                    field: 'guzhiriqi',
+                    title: '估值时间'
+                },
+                {
                     field: 'jine',
-                    title: '总金额'
+                    title: '总金额',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        return (row.cost*row.fene).toFixed(2);
+                    }
                 },
                 {
                     field: 'yingkui',
-                    title: '总盈亏'
+                    title: '总盈亏',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        return (row.jingzhi*row.fene - row.cost*row.fene).toFixed(2);
+                    }
                 },
                 {
                     field: 'shouyilv',
-                    title: '总收益率'
+                    title: '总收益率',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        return (100*((row.jingzhi - row.cost)/row.cost)).toFixed(2)+'%';
+                    }
                 },
                 {
-                    field: 'date',
-                    title: '日期'
+                    field: 'jinrishouyi',
+                    title: '今日收益',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        return (row.guzhi*row.fene - row.jingzhi*row.fene).toFixed(2);
+                    }
+                },
+                {
+                    field: 'gushouyilv',
+                    title: '估收益率',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        return (100*((row.guzhi - row.cost)/row.cost)).toFixed(2)+'%';
+                    }
                 },
                 {
                     title: '操作',
                     align: 'center',
-                    formatter: function(value, row, index) {
+                    formatter: function (value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editFull(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
                         actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
                         return actions.join('');
                     }
                 }]
-            };
-            $.table.init(options);
-        });
-    </script>
+        };
+        $.table.init(options);
+    });
+</script>
 </body>
 </html>

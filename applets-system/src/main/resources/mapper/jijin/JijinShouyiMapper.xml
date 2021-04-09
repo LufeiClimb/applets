@@ -12,8 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="zuhe"    column="zuhe"    />
         <result property="jingzhi"    column="jingzhi"    />
         <result property="zhangfu"    column="zhangfu"    />
+        <result property="guzhi"    column="guzhi"    />
         <result property="cost"    column="cost"    />
         <result property="fene"    column="fene"    />
+        <result property="guzhiriqi"    column="guzhiriqi"    />
         <result property="jine"    column="jine"    />
         <result property="yingkui"    column="yingkui"    />
         <result property="shouyilv"    column="shouyilv"    />
@@ -25,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectJijinShouyiVo">
-        select id, code, name, pingtai, zuhe, jingzhi, zhangfu, cost, fene, jine, yingkui, shouyilv, date, create_by, create_time, update_by, update_time from jijin_shouyi
+        select id, code, name, pingtai, zuhe, jingzhi, zhangfu, guzhi, cost, fene, guzhiriqi, jine, yingkui, shouyilv, date, create_by, create_time, update_by, update_time from jijin_shouyi
     </sql>
 
     <select id="selectJijinShouyiList" parameterType="JijinShouyi" resultMap="JijinShouyiResult">
@@ -37,8 +39,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="zuhe != null  and zuhe != ''"> and zuhe = #{zuhe}</if>
             <if test="jingzhi != null  and jingzhi != ''"> and jingzhi = #{jingzhi}</if>
             <if test="zhangfu != null  and zhangfu != ''"> and zhangfu = #{zhangfu}</if>
+            <if test="guzhi != null  and guzhi != ''"> and guzhi = #{guzhi}</if>
             <if test="cost != null  and cost != ''"> and cost = #{cost}</if>
             <if test="fene != null  and fene != ''"> and fene = #{fene}</if>
+            <if test="guzhiriqi != null  and guzhiriqi != ''"> and guzhiriqi = #{guzhiriqi}</if>
             <if test="jine != null  and jine != ''"> and jine = #{jine}</if>
             <if test="yingkui != null  and yingkui != ''"> and yingkui = #{yingkui}</if>
             <if test="shouyilv != null  and shouyilv != ''"> and shouyilv = #{shouyilv}</if>
@@ -60,8 +64,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="zuhe != null">zuhe,</if>
             <if test="jingzhi != null">jingzhi,</if>
             <if test="zhangfu != null">zhangfu,</if>
+            <if test="guzhi != null">guzhi,</if>
             <if test="cost != null">cost,</if>
             <if test="fene != null">fene,</if>
+            <if test="guzhiriqi != null">guzhiriqi,</if>
             <if test="jine != null">jine,</if>
             <if test="yingkui != null">yingkui,</if>
             <if test="shouyilv != null">shouyilv,</if>
@@ -78,8 +84,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="zuhe != null">#{zuhe},</if>
             <if test="jingzhi != null">#{jingzhi},</if>
             <if test="zhangfu != null">#{zhangfu},</if>
+            <if test="guzhi != null">#{guzhi},</if>
             <if test="cost != null">#{cost},</if>
             <if test="fene != null">#{fene},</if>
+            <if test="guzhiriqi != null">#{guzhiriqi},</if>
             <if test="jine != null">#{jine},</if>
             <if test="yingkui != null">#{yingkui},</if>
             <if test="shouyilv != null">#{shouyilv},</if>
@@ -100,8 +108,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="zuhe != null">zuhe = #{zuhe},</if>
             <if test="jingzhi != null">jingzhi = #{jingzhi},</if>
             <if test="zhangfu != null">zhangfu = #{zhangfu},</if>
+            <if test="guzhi != null">guzhi = #{guzhi},</if>
             <if test="cost != null">cost = #{cost},</if>
             <if test="fene != null">fene = #{fene},</if>
+            <if test="guzhiriqi != null">guzhiriqi = #{guzhiriqi},</if>
             <if test="jine != null">jine = #{jine},</if>
             <if test="yingkui != null">yingkui = #{yingkui},</if>
             <if test="shouyilv != null">shouyilv = #{shouyilv},</if>

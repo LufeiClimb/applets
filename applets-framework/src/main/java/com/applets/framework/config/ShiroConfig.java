@@ -39,173 +39,123 @@ import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 
 /**
  * 权限配置加载
- * 
+ *
  * @author LufeiClimb
  */
 @Configuration
-public class ShiroConfig
-{
-    /**
-     * Session超时时间，单位为毫秒（默认30分钟）
-     */
+public class ShiroConfig {
+    /** Session超时时间，单位为毫秒（默认30分钟） */
     @Value("${shiro.session.expireTime}")
     private int expireTime;
 
-    /**
-     * 相隔多久检查一次session的有效性，单位毫秒，默认就是10分钟
-     */
+    /** 相隔多久检查一次session的有效性，单位毫秒，默认就是10分钟 */
     @Value("${shiro.session.validationInterval}")
     private int validationInterval;
 
-    /**
-     * 同一个用户最大会话数
-     */
+    /** 同一个用户最大会话数 */
     @Value("${shiro.session.maxSession}")
     private int maxSession;
 
-    /**
-     * 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户
-     */
+    /** 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户 */
     @Value("${shiro.session.kickoutAfter}")
     private boolean kickoutAfter;
 
-    /**
-     * 验证码开关
-     */
+    /** 验证码开关 */
     @Value("${shiro.user.captchaEnabled}")
     private boolean captchaEnabled;
 
-    /**
-     * 验证码类型
-     */
+    /** 验证码类型 */
     @Value("${shiro.user.captchaType}")
     private String captchaType;
 
-    /**
-     * 设置Cookie的域名
-     */
+    /** 设置Cookie的域名 */
     @Value("${shiro.cookie.domain}")
     private String domain;
 
-    /**
-     * 设置cookie的有效访问路径
-     */
+    /** 设置cookie的有效访问路径 */
     @Value("${shiro.cookie.path}")
     private String path;
 
-    /**
-     * 设置HttpOnly属性
-     */
+    /** 设置HttpOnly属性 */
     @Value("${shiro.cookie.httpOnly}")
     private boolean httpOnly;
 
-    /**
-     * 设置Cookie的过期时间，秒为单位
-     */
+    /** 设置Cookie的过期时间，秒为单位 */
     @Value("${shiro.cookie.maxAge}")
     private int maxAge;
 
-    /**
-     * 设置cipherKey密钥
-     */
+    /** 设置cipherKey密钥 */
     @Value("${shiro.cookie.cipherKey}")
     private String cipherKey;
 
-    /**
-     * 登录地址
-     */
+    /** 登录地址 */
     @Value("${shiro.user.loginUrl}")
     private String loginUrl;
 
-    /**
-     * 权限认证失败地址
-     */
+    /** 权限认证失败地址 */
     @Value("${shiro.user.unauthorizedUrl}")
     private String unauthorizedUrl;
 
-    /**
-     * 缓存管理器 使用Ehcache实现
-     */
+    /** 缓存管理器 使用Ehcache实现 */
     @Bean
-    public EhCacheManager getEhCacheManager()
-    {
-        net.sf.ehcache.CacheManager cacheManager = net.sf.ehcache.CacheManager.getCacheManager("ruoyi");
+    public EhCacheManager getEhCacheManager() {
+        net.sf.ehcache.CacheManager cacheManager =
+                net.sf.ehcache.CacheManager.getCacheManager("ruoyi");
         EhCacheManager em = new EhCacheManager();
-        if (StringUtils.isNull(cacheManager))
-        {
-            em.setCacheManager(new net.sf.ehcache.CacheManager(getCacheManagerConfigFileInputStream()));
+        if (StringUtils.isNull(cacheManager)) {
+            em.setCacheManager(
+                    new net.sf.ehcache.CacheManager(getCacheManagerConfigFileInputStream()));
             return em;
-        }
-        else
-        {
+        } else {
             em.setCacheManager(cacheManager);
             return em;
         }
     }
 
-    /**
-     * 返回配置文件流 避免ehcache配置文件一直被占用，无法完全销毁项目重新部署
-     */
-    protected InputStream getCacheManagerConfigFileInputStream()
-    {
+    /** 返回配置文件流 避免ehcache配置文件一直被占用，无法完全销毁项目重新部署 */
+    protected InputStream getCacheManagerConfigFileInputStream() {
         String configFile = "classpath:ehcache/ehcache-shiro.xml";
         InputStream inputStream = null;
-        try
-        {
+        try {
             inputStream = ResourceUtils.getInputStreamForPath(configFile);
             byte[] b = IOUtils.toByteArray(inputStream);
             InputStream in = new ByteArrayInputStream(b);
             return in;
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new ConfigurationException(
-                    "Unable to obtain input stream for cacheManagerConfigFile [" + configFile + "]", e);
-        }
-        finally
-        {
+                    "Unable to obtain input stream for cacheManagerConfigFile [" + configFile + "]",
+                    e);
+        } finally {
             IOUtils.closeQuietly(inputStream);
         }
     }
 
-    /**
-     * 自定义Realm
-     */
+    /** 自定义Realm */
     @Bean
-    public UserRealm userRealm(EhCacheManager cacheManager)
-    {
+    public UserRealm userRealm(EhCacheManager cacheManager) {
         UserRealm userRealm = new UserRealm();
         userRealm.setAuthorizationCacheName(Constants.SYS_AUTH_CACHE);
         userRealm.setCacheManager(cacheManager);
         return userRealm;
     }
 
-    /**
-     * 自定义sessionDAO会话
-     */
+    /** 自定义sessionDAO会话 */
     @Bean
-    public OnlineSessionDAO sessionDAO()
-    {
+    public OnlineSessionDAO sessionDAO() {
         OnlineSessionDAO sessionDAO = new OnlineSessionDAO();
         return sessionDAO;
     }
 
-    /**
-     * 自定义sessionFactory会话
-     */
+    /** 自定义sessionFactory会话 */
     @Bean
-    public OnlineSessionFactory sessionFactory()
-    {
+    public OnlineSessionFactory sessionFactory() {
         OnlineSessionFactory sessionFactory = new OnlineSessionFactory();
         return sessionFactory;
     }
 
-    /**
-     * 会话管理器
-     */
+    /** 会话管理器 */
     @Bean
-    public OnlineWebSessionManager sessionManager()
-    {
+    public OnlineWebSessionManager sessionManager() {
         OnlineWebSessionManager manager = new OnlineWebSessionManager();
         // 加入缓存管理器
         manager.setCacheManager(getEhCacheManager());
@@ -216,7 +166,8 @@ public class ShiroConfig
         // 去掉 JSESSIONID
         manager.setSessionIdUrlRewritingEnabled(false);
         // 定义要使用的无效的Session定时调度器
-        manager.setSessionValidationScheduler(SpringUtils.getBean(SpringSessionValidationScheduler.class));
+        manager.setSessionValidationScheduler(
+                SpringUtils.getBean(SpringSessionValidationScheduler.class));
         // 是否定时检查session
         manager.setSessionValidationSchedulerEnabled(true);
         // 自定义SessionDao
@@ -226,12 +177,9 @@ public class ShiroConfig
         return manager;
     }
 
-    /**
-     * 安全管理器
-     */
+    /** 安全管理器 */
     @Bean
-    public SecurityManager securityManager(UserRealm userRealm)
-    {
+    public SecurityManager securityManager(UserRealm userRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 设置realm.
         securityManager.setRealm(userRealm);
@@ -244,22 +192,16 @@ public class ShiroConfig
         return securityManager;
     }
 
-    /**
-     * 退出过滤器
-     */
-    public LogoutFilter logoutFilter()
-    {
+    /** 退出过滤器 */
+    public LogoutFilter logoutFilter() {
         LogoutFilter logoutFilter = new LogoutFilter();
         logoutFilter.setLoginUrl(loginUrl);
         return logoutFilter;
     }
 
-    /**
-     * Shiro过滤器配置
-     */
+    /** Shiro过滤器配置 */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager)
-    {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // Shiro的核心安全接口,这个属性是必须的
         shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -286,6 +228,7 @@ public class ShiroConfig
         filterChainDefinitionMap.put("/login", "anon,captchaValidate");
         // 注册相关
         filterChainDefinitionMap.put("/register", "anon,captchaValidate");
+        filterChainDefinitionMap.put("/jijin/**", "anon,captchaValidate");
         // 系统权限列表
         // filterChainDefinitionMap.putAll(SpringUtils.getBean(IMenuService.class).selectPermsAll());
 
@@ -305,43 +248,31 @@ public class ShiroConfig
         return shiroFilterFactoryBean;
     }
 
-    /**
-     * 自定义在线用户处理过滤器
-     */
-    public OnlineSessionFilter onlineSessionFilter()
-    {
+    /** 自定义在线用户处理过滤器 */
+    public OnlineSessionFilter onlineSessionFilter() {
         OnlineSessionFilter onlineSessionFilter = new OnlineSessionFilter();
         onlineSessionFilter.setLoginUrl(loginUrl);
         onlineSessionFilter.setOnlineSessionDAO(sessionDAO());
         return onlineSessionFilter;
     }
 
-    /**
-     * 自定义在线用户同步过滤器
-     */
-    public SyncOnlineSessionFilter syncOnlineSessionFilter()
-    {
+    /** 自定义在线用户同步过滤器 */
+    public SyncOnlineSessionFilter syncOnlineSessionFilter() {
         SyncOnlineSessionFilter syncOnlineSessionFilter = new SyncOnlineSessionFilter();
         syncOnlineSessionFilter.setOnlineSessionDAO(sessionDAO());
         return syncOnlineSessionFilter;
     }
 
-    /**
-     * 自定义验证码过滤器
-     */
-    public CaptchaValidateFilter captchaValidateFilter()
-    {
+    /** 自定义验证码过滤器 */
+    public CaptchaValidateFilter captchaValidateFilter() {
         CaptchaValidateFilter captchaValidateFilter = new CaptchaValidateFilter();
         captchaValidateFilter.setCaptchaEnabled(captchaEnabled);
         captchaValidateFilter.setCaptchaType(captchaType);
         return captchaValidateFilter;
     }
 
-    /**
-     * cookie 属性设置
-     */
-    public SimpleCookie rememberMeCookie()
-    {
+    /** cookie 属性设置 */
+    public SimpleCookie rememberMeCookie() {
         SimpleCookie cookie = new SimpleCookie("rememberMe");
         cookie.setDomain(domain);
         cookie.setPath(path);
@@ -350,22 +281,16 @@ public class ShiroConfig
         return cookie;
     }
 
-    /**
-     * 记住我
-     */
-    public CookieRememberMeManager rememberMeManager()
-    {
+    /** 记住我 */
+    public CookieRememberMeManager rememberMeManager() {
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCookie(rememberMeCookie());
         cookieRememberMeManager.setCipherKey(Base64.decode(cipherKey));
         return cookieRememberMeManager;
     }
 
-    /**
-     * 同一个用户多设备登录限制
-     */
-    public KickoutSessionFilter kickoutSessionFilter()
-    {
+    /** 同一个用户多设备登录限制 */
+    public KickoutSessionFilter kickoutSessionFilter() {
         KickoutSessionFilter kickoutSessionFilter = new KickoutSessionFilter();
         kickoutSessionFilter.setCacheManager(getEhCacheManager());
         kickoutSessionFilter.setSessionManager(sessionManager());
@@ -378,23 +303,18 @@ public class ShiroConfig
         return kickoutSessionFilter;
     }
 
-    /**
-     * thymeleaf模板引擎和shiro框架的整合
-     */
+    /** thymeleaf模板引擎和shiro框架的整合 */
     @Bean
-    public ShiroDialect shiroDialect()
-    {
+    public ShiroDialect shiroDialect() {
         return new ShiroDialect();
     }
 
-    /**
-     * 开启Shiro注解通知器
-     */
+    /** 开启Shiro注解通知器 */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
-            @Qualifier("securityManager") SecurityManager securityManager)
-    {
-        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+            @Qualifier("securityManager") SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor =
+                new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }

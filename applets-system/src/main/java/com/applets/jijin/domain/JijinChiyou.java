@@ -44,6 +44,10 @@ public class JijinChiyou extends BaseEntity {
     @Excel(name = "涨跌幅")
     private String zhangfu;
 
+    /** 估值 */
+    @Excel(name = "估值")
+    private String guzhi;
+
     /** 持有成本 */
     @Excel(name = "持有成本")
     private String cost;
@@ -51,6 +55,10 @@ public class JijinChiyou extends BaseEntity {
     /** 持有份额 */
     @Excel(name = "持有份额")
     private String fene;
+
+    /** 估值日期 */
+    @Excel(name = "估值日期")
+    private String guzhiriqi;
 
     /** 总金额 */
     @Excel(name = "总金额")
@@ -64,10 +72,9 @@ public class JijinChiyou extends BaseEntity {
     @Excel(name = "总收益率")
     private String shouyilv;
 
-    /** 日期 */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "日期", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date date;
+    /** 净值日期 */
+    @Excel(name = "净值日期")
+    private String date;
 
     public void setId(Long id) {
         this.id = id;
@@ -125,6 +132,14 @@ public class JijinChiyou extends BaseEntity {
         return zhangfu;
     }
 
+    public void setGuzhi(String guzhi) {
+        this.guzhi = guzhi;
+    }
+
+    public String getGuzhi() {
+        return guzhi;
+    }
+
     public void setCost(String cost) {
         this.cost = cost;
     }
@@ -139,6 +154,14 @@ public class JijinChiyou extends BaseEntity {
 
     public String getFene() {
         return fene;
+    }
+
+    public void setGuzhiriqi(String guzhiriqi) {
+        this.guzhiriqi = guzhiriqi;
+    }
+
+    public String getGuzhiriqi() {
+        return guzhiriqi;
     }
 
     public void setJine(String jine) {
@@ -165,11 +188,11 @@ public class JijinChiyou extends BaseEntity {
         return shouyilv;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -183,8 +206,10 @@ public class JijinChiyou extends BaseEntity {
                 .append("zuhe", getZuhe())
                 .append("jingzhi", getJingzhi())
                 .append("zhangfu", getZhangfu())
+                .append("guzhi", getGuzhi())
                 .append("cost", getCost())
                 .append("fene", getFene())
+                .append("guzhiriqi", getGuzhiriqi())
                 .append("jine", getJine())
                 .append("yingkui", getYingkui())
                 .append("shouyilv", getShouyilv())

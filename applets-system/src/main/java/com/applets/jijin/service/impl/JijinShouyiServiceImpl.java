@@ -1,14 +1,13 @@
 package com.applets.jijin.service.impl;
 
-import com.applets.common.core.text.Convert;
+import java.util.List;
 import com.applets.common.utils.DateUtils;
-import com.applets.jijin.domain.JijinShouyi;
-import com.applets.jijin.mapper.JijinShouyiMapper;
-import com.applets.jijin.service.IJijinShouyiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.applets.jijin.mapper.JijinShouyiMapper;
+import com.applets.jijin.domain.JijinShouyi;
+import com.applets.jijin.service.IJijinShouyiService;
+import com.applets.common.core.text.Convert;
 
 /**
  * 收益历史Service业务层处理

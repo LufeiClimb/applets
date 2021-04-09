@@ -11,19 +11,26 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">基金代码：</label>
                 <div class="col-sm-8">
-                    <input name="code" th:field="*{code}" class="form-control" type="text">
+                    <input id="code" name="code" th:field="*{code}" class="form-control" type="text">
+                    <a class="btn btn-success" onclick="chaXun()">
+                        <i class="fa"></i> 查询数据
+                    </a>
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">基金名称：</label>
                 <div class="col-sm-8">
-                    <input name="name" th:field="*{name}" class="form-control" type="text">
+                    <input id="name" name="name" th:field="*{name}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">购买平台：</label>
                 <div class="col-sm-8">
-                    <input name="pingtai" th:field="*{pingtai}" class="form-control" type="text">
+                    <input name="pingtai" th:field="*{pingtai}" class="form-control" type="text" list="typelist"/>
+                    <datalist id="typelist">
+                        <option>支付宝</option>
+                        <option>蛋卷</option>
+                    </datalist>
                 </div>
             </div>
             <div class="form-group">    
@@ -35,13 +42,19 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">单位净值：</label>
                 <div class="col-sm-8">
-                    <input name="jingzhi" th:field="*{jingzhi}" class="form-control" type="text">
+                    <input id="jingzhi" name="jingzhi" th:field="*{jingzhi}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">涨跌幅：</label>
                 <div class="col-sm-8">
-                    <input name="zhangfu" th:field="*{zhangfu}" class="form-control" type="text">
+                    <input id="zhangfu" name="zhangfu" th:field="*{zhangfu}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">估值：</label>
+                <div class="col-sm-8">
+                    <input id="guzhi" name="guzhi" th:field="*{guzhi}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
@@ -57,32 +70,19 @@
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">总金额：</label>
+                <label class="col-sm-3 control-label">估值日期：</label>
                 <div class="col-sm-8">
-                    <input name="jine" th:field="*{jine}" class="form-control" type="text">
+                    <input id="guzhiriqi" name="guzhiriqi" th:field="*{guzhiriqi}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">总盈亏：</label>
-                <div class="col-sm-8">
-                    <input name="yingkui" th:field="*{yingkui}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">总收益率：</label>
-                <div class="col-sm-8">
-                    <input name="shouyilv" th:field="*{shouyilv}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">日期：</label>
+                <label class="col-sm-3 control-label">净值日期：</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
-                        <input name="date" th:value="${#dates.format(jijinChiyou.date, 'yyyy-MM-dd')}" class="form-control" placeholder="yyyy-MM-dd" type="text">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input id="date" name="date" th:value="*{date}" class="form-control" type="text">
                     </div>
                 </div>
-            </div>
+            </div>s
         </form>
     </div>
     <th:block th:include="include :: footer" />
@@ -96,6 +96,22 @@
         function submitHandler() {
             if ($.validate.form()) {
                 $.operate.save(prefix + "/edit", $('#form-chiyou-edit').serialize());
+            }
+        }
+        function chaXun() {
+            var code = $("#code").val();
+            console.log("code="+code)
+            if (code !== null && code.length === 6 ) {
+                $.operate.get("/jingzhi/jiJinXinXi/"+code, function(result) {
+                    if (result.code === web_status.SUCCESS) {
+                        document.getElementById("name").value = result.data.name;
+                        document.getElementById("jingzhi").value = result.data.jingzhi;
+                        document.getElementById("date").value = result.data.date;
+                        document.getElementById("zhangfu").value = result.data.zhangfu;
+                        document.getElementById("guzhi").value = result.data.guzhi;
+                        document.getElementById("guzhiriqi").value = result.data.guzhiriqi;
+                    }
+                });
             }
         }
 

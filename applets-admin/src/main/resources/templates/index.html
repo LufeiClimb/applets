@@ -240,8 +240,8 @@
         <a id="ax_close_max" class="ax_close_max" href="#" title="关闭全屏"> <i class="fa fa-times-circle-o"></i> </a>
 
         <div class="row mainContent" id="content-main" th:style="${#bools.isFalse(ignoreFooter)} ? |height: calc(100% - 91px)|">
-            <iframe class="RuoYi_iframe" name="iframe0" width="100%" height="100%" th:data-id="@{/system/main}"
-                    th:src="@{/system/main}" frameborder="0" seamless></iframe>
+            <iframe class="RuoYi_iframe" name="iframe0" width="100%" height="100%" th:data-id="@{/jijin/chiyou}"
+                    th:src="@{/jijin/chiyou}" frameborder="0" seamless></iframe>
         </div>
         
         <div th:if="${ignoreFooter}" class="footer">

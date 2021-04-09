@@ -30,23 +30,41 @@ import java.util.TreeSet;
  * @date 2020-4-16 09:54:43
  * @since 1.8
  */
-@Api(value = "/jingzhi", tags = "基金净值")
+@Api(value = "/jijin", tags = "基金净值")
 @RestController
-@RequestMapping("/jingzhi")
+@RequestMapping("/jijin")
 public class ZuiXinJingZhi {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ZuiXinJingZhi zuiXinJingZhi = new ZuiXinJingZhi();
         zuiXinJingZhi.test();
     }
 
-    public void test() {
+    public void test() throws InterruptedException {
         ZuiXinJingZhi zuiXinJingZhi = new ZuiXinJingZhi();
         // System.out.println("净值");
         // zuiXinJingZhi.jingZhi();
 
-        System.out.println("估值");
-        zuiXinJingZhi.jiJinXinXi("001980");
+        String[] codes = {"004753"};
+
+        List<String> guzhi = new ArrayList<>();
+        List<String> jingzhi = new ArrayList<>();
+        for (int i = 0; i < codes.length; i++) {
+            AjaxResult ajaxResult = zuiXinJingZhi.jiJinXinXi(codes[i]);
+            JSONObject jsonObject = JSONObject.parseObject(JSONObject.toJSONString(ajaxResult));
+            // jingzhi.add(jsonObject.getJSONObject("data").getString("jingzhi"));
+            guzhi.add(jsonObject.getJSONObject("data").getString("guzhi"));
+            Thread.sleep(100);
+        }
+
+        for (String s : jingzhi) {
+            System.out.println(s);
+        }
+        System.out.println("----");
+        for (String s : guzhi) {
+            System.out.println(s);
+        }
+
     }
 
     @GetMapping("/jiJinXinXi/{code}")
@@ -59,7 +77,7 @@ public class ZuiXinJingZhi {
         JSONObject param = new JSONObject();
 
         String cookie =
-                "__hutmmobile=24CA630B-E0EA-4159-8D24-E25D00A0C337; welcome_fund_attention=true; FUNDID_COOKIE=COOKIE20200411000001208681; SESSION=2cb80d45-a9a9-4a9a-a46e-7bf56e498cd7; __hutmc=268394641; __hutmz=268394641.1614155536.2.1.hutmcsr=(direct)|hutmccn=(direct)|hutmcmd=(none); selectedFeatureType=lx; __hutma=268394641.800853052.1586582687.1614155536.1614262736.3; _hb_ref_pgid=SNM968; _hb_pgid=; __hutmb=268394641.6.10.1614262736; GM_VISIT_COOKIE=001980%2C000594%2C008868";
+                "";
         String url = "https://www.howbuy.com/fund/" + code + "/";
         String formResult = HttpUtil.httpForm(url, param, cookie);
 
@@ -67,7 +85,7 @@ public class ZuiXinJingZhi {
         String name = totalDoc.getElementsByTag("h1").text().replace("(", "-").split("-")[0];
         result.put("name", name);
 
-        String jingzhi = totalDoc.getElementsByClass("cRed").get(1).text();
+        String jingzhi = totalDoc.getElementsByClass("dRate").text();
         result.put("jingzhi", jingzhi);
 
         String date =
@@ -76,7 +94,7 @@ public class ZuiXinJingZhi {
                         .text()
                         .replace("单位净值 [", "")
                         .replace("]", "");
-        result.put("date", LocalDate.now().getYear() + "-" + date);
+        result.put("date", date);
 
         String zhangfu = totalDoc.getElementsByClass("b-rate").get(0).text();
         result.put("zhangfu", zhangfu);

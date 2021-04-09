@@ -2,11 +2,11 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <th:block th:include="include :: header('新增持有基金')" />
-    <th:block th:include="include :: select2-css" />
+    <th:block th:include="include :: datetimepicker-css" />
 </head>
-<body class="main-content">
+<body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-        <form class="form-horizontal" id="form-chiyou-add">
+        <form class="form-horizontal m" id="form-chiyou-add">
             <div class="form-group">    
                 <label class="col-sm-3 control-label">基金代码：</label>
                 <div class="col-sm-8">
@@ -25,7 +25,11 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">购买平台：</label>
                 <div class="col-sm-8">
-                    <input name="pingtai" class="form-control" type="text">
+                    <input name="pingtai" class="form-control" type="text" list="typelist"/>
+                    <datalist id="typelist">
+                        <option>支付宝</option>
+                        <option>蛋卷</option>
+                    </datalist>
                 </div>
             </div>
             <div class="form-group">    
@@ -46,42 +50,35 @@
                     <input id="zhangfu" name="zhangfu" class="form-control" type="text">
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">持有成本：</label>
                 <div class="col-sm-8">
                     <input name="cost" class="form-control" type="text">
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
                 <label class="col-sm-3 control-label">持有份额：</label>
                 <div class="col-sm-8">
                     <input name="fene" class="form-control" type="text">
                 </div>
             </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">总金额：</label>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">估值：</label>
                 <div class="col-sm-8">
-                    <input name="jine" class="form-control" type="text">
+                    <input id="guzhi" name="guzhi" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">估值日期：</label>
+                <div class="col-sm-8">
+                    <input id="guzhiriqi" name="guzhiriqi" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">总盈亏：</label>
-                <div class="col-sm-8">
-                    <input name="yingkui" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">总收益率：</label>
-                <div class="col-sm-8">
-                    <input name="shouyilv" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">    
-                <label class="col-sm-3 control-label">日期：</label>
+                <label class="col-sm-3 control-label">净值日期：</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
-                        <input id="date" name="date" class="form-control" placeholder="yyyy-MM-dd" type="text">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input id="date" name="date" class="form-control" type="text">
                     </div>
                 </div>
             </div>
@@ -110,6 +107,8 @@
                         document.getElementById("jingzhi").value = result.data.jingzhi;
                         document.getElementById("date").value = result.data.date;
                         document.getElementById("zhangfu").value = result.data.zhangfu;
+                        document.getElementById("guzhi").value = result.data.guzhi;
+                        document.getElementById("guzhiriqi").value = result.data.guzhiriqi;
                     }
                 });
             }
